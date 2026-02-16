@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us · Acreage of Global Homestead</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #f0f2e9;  /* soft field green */
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      color: #1d3a2b;
+      line-height: 1.5;
+      padding: 1.5rem 1rem;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      background-color: #ffffff;
+      border-radius: 2.5rem;
+      box-shadow: 0 25px 45px -20px #2f4b3c;
+      overflow: hidden;
+      padding: 2.5rem 2rem;
+    }
+
+    /* top bar */
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 350;
+      letter-spacing: -0.02em;
+      color: #2b6b4a;
+      border: 2px solid #c2d9c0;
+      border-radius: 60px;
+      padding: 0.2rem 1.5rem;
+      background: #fafff8;
+    }
+
+    .translator-control {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: #e6f0e5;
+      padding: 0.4rem 1rem 0.4rem 1.5rem;
+      border-radius: 60px;
+      border: 1px solid #bcd5b6;
+    }
+
+    .translator-control label {
+      font-size: 0.9rem;
+      font-weight: 450;
+      color: #2a6e4d;
+    }
+
+    #lang-select {
+      background: white;
+      border: 1px solid #aacfaf;
+      border-radius: 30px;
+      padding: 0.4rem 1.2rem;
+      font-size: 1rem;
+      color: #1f6242;
+      font-weight: 450;
+      cursor: pointer;
+      outline: none;
+    }
+
+    /* hero */
+    .hero {
+      text-align: center;
+      max-width: 800px;
+      margin: 1rem auto 2rem;
+    }
+
+    .hero h1 {
+      font-size: 3.2rem;
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      color: #1d5235;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero .subhead {
+      font-size: 1.8rem;
+      font-weight: 320;
+      color: #3b7556;
+      margin-bottom: 1rem;
+    }
+
+    .hero .tagline {
+      font-size: 1.3rem;
+      font-weight: 290;
+      color: #528b6b;
+      border-bottom: 1px solid #dae5d3;
+      padding-bottom: 1.2rem;
+      margin-bottom: 1rem;
+    }
+
+    /* about story / mission cards */
+    .mission-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+
+    .mission-card {
+      background: #f9fcf7;
+      border-radius: 1.8rem;
+      padding: 2rem 1.8rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+      border: 1px solid #ddebd9;
+      transition: all 0.15s;
+      text-align: center;
+    }
+
+    .mission-card:hover {
+      box-shadow: 0 18px 28px -16px #417a5b;
+      border-color: #b6d7b6;
+    }
+
+    .mission-icon {
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .mission-card h3 {
+      font-size: 1.8rem;
+      font-weight: 380;
+      color: #1c5f3c;
+      margin-bottom: 0.75rem;
+    }
+
+    .mission-card p {
+      color: #2a5c40;
+      font-weight: 360;
+    }
+
+    /* team grid – using testimonial card style */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 2rem 1.5rem;
+      margin: 3rem 0;
+    }
+
+    .team-card {
+      background: #f9fcf7;
+      border-radius: 1.8rem;
+      padding: 1.8rem 1.5rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+      border: 1px solid #ddebd9;
+      transition: all 0.15s;
+      text-align: center;
+    }
+
+    .team-card:hover {
+      box-shadow: 0 18px 28px -16px #417a5b;
+      border-color: #b6d7b6;
+    }
+
+    .team-name {
+      font-weight: 620;
+      color: #1f6642;
+      font-size: 1.4rem;
+    }
+
+    .team-role {
+      font-size: 1rem;
+      color: #528b6b;
+      margin: 0.3rem 0 1rem;
+      font-weight: 420;
+    }
+
+    .team-desc {
+      font-size: 0.98rem;
+      color: #2d6446;
+      quotes: "“" "”" "‘" "’";
+    }
+
+    .team-desc::before {
+      content: "“";
+      font-size: 1.5rem;
+      line-height: 1;
+      color: #8db892;
+      margin-right: 2px;
+    }
+
+    .team-desc::after {
+      content: "”";
+      font-size: 1.5rem;
+      line-height: 1;
+      color: #8db892;
+      margin-left: 2px;
+    }
+
+    /* CTA / contact block */
+    .cta-block {
+      background: #deecdd;
+      border-radius: 2.5rem;
+      padding: 2.8rem 2rem;
+      text-align: center;
+      margin: 3rem 0 2rem;
+    }
+
+    .cta-block h3 {
+      font-size: 2.2rem;
+      font-weight: 380;
+      color: #1c5f3c;
+      margin-bottom: 0.8rem;
+    }
+
+    .cta-button {
+      background: #2a7853;
+      border: none;
+      color: white;
+      font-size: 1.4rem;
+      font-weight: 430;
+      padding: 0.9rem 3rem;
+      border-radius: 60px;
+      cursor: pointer;
+      transition: background 0.2s;
+      box-shadow: 0 10px 18px -8px #246e47;
+      border: 1px solid #288f51;
+      margin: 1.2rem 0 0.5rem;
+    }
+
+    .cta-button:hover {
+      background: #1e6040;
+    }
+
+    /* footer */
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2.2rem;
+      margin-top: 3rem;
+      padding: 2rem 0 1rem;
+      border-top: 1px solid #d1dfcd;
+      font-size: 1rem;
+    }
+
+    .footer-links a {
+      text-decoration: none;
+      color: #2d7553;
+      font-weight: 460;
+    }
+
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
+
+    .cookie-note {
+      margin: 1.8rem auto 0.5rem;
+      font-size: 0.82rem;
+      color: #5f9178;
+      text-align: center;
+      max-width: 700px;
+      background: #f1f9ef;
+      padding: 0.8rem 1.8rem;
+      border-radius: 60px;
+    }
+
+    .cookie-note a {
+      color: #1f7a4b;
+    }
+
+    hr {
+      border: none;
+      border-top: 2px solid #dae5d3;
+      margin: 1rem 0;
+    }
+
+    .disclaimer {
+      text-align: center;
+      font-size: 0.75rem;
+      color: #86af93;
+      margin-top: 0.5rem;
+    }
+
+    @media (max-width: 600px) {
+      .container { padding: 1.8rem 1rem; }
+      .hero h1 { font-size: 2.5rem; }
+      .hero .subhead { font-size: 1.5rem; }
+      .top-bar { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <!-- top bar with logo and translator -->
+  <div class="top-bar">
+    <div class="logo" data-i18n="logo">A G H</div>
+    <div class="translator-control">
+      <label for="lang-select" data-i18n="translate_label">🌾 Language</label>
+      <select id="lang-select">
+        <option value="en" selected>English</option>
+        <option value="es">Español</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- about hero -->
+  <div class="hero">
+    <h1 data-i18n="about_headline">Growing a smarter future.</h1>
+    <div class="subhead" data-i18n="about_subhead">About Acreage of Global Homestead</div>
+    <div class="tagline" data-i18n="about_tagline">We blend tradition with technology to empower farmers worldwide.</div>
+  </div>
+
+  <!-- mission / values cards (three) -->
+  <div class="mission-grid">
+    <div class="mission-card">
+      <div class="mission-icon">🌱</div>
+      <h3 data-i18n="mission1_title">Our Mission</h3>
+      <p data-i18n="mission1_text">To make precision agriculture accessible and sustainable for every farmer, from smallholdings to large cooperatives.</p>
+    </div>
+    <div class="mission-card">
+      <div class="mission-icon">🤝</div>
+      <h3 data-i18n="mission2_title">Our Approach</h3>
+      <p data-i18n="mission2_text">Direct B2B sales combined with channel partnerships – we meet farmers where they are.</p>
+    </div>
+    <div class="mission-card">
+      <div class="mission-icon">🌍</div>
+      <h3 data-i18n="mission3_title">Global Reach</h3>
+      <p data-i18n="mission3_text">Over 1 million farmers across five continents trust AGH to improve yields and well‑being.</p>
+    </div>
+  </div>
+
+  <!-- story section (using a slightly larger card) -->
+  <div style="background: #f0f7f2; border-radius: 2rem; padding: 2.5rem; margin: 2.5rem 0; text-align: center; border: 1px solid #cde0d2;">
+    <h2 style="font-size: 2rem; font-weight: 380; color: #1d5e3a; margin-bottom: 1rem;" data-i18n="story_title">Our story</h2>
+    <p style="max-width: 700px; margin: 0 auto; font-size: 1.15rem; color: #2d6b48;" data-i18n="story_text">
+      Founded in 2018 by agronomists and software engineers, AGH started as a small project in the Niger Delta. We saw that farmers had incredible intuition but lacked real‑time data. Today we combine satellite imaging, IoT sensors, and meditation tools to care for both the land and the farmer.
+    </p>
+  </div>
+
+  <!-- team section heading -->
+  <div style="text-align: center; margin: 3rem 0 1rem;">
+    <h2 style="font-size: 2.4rem; font-weight: 360; color: #1c5537;" data-i18n="team_title">Meet the cultivators</h2>
+    <p style="color: #528b6b; font-size: 1.2rem;" data-i18n="team_sub">People behind the platform</p>
+  </div>
+
+  <!-- team grid (six members, using testimonial-card style) -->
+  <div class="team-grid">
+    <!-- Ebuka -->
+    <div class="team-card">
+      <div class="team-name">Ebuka Okonkwo</div>
+      <div class="team-role" data-i18n="role1">Co‑founder, Chief Agronomist</div>
+      <div class="team-desc" data-i18n="team1">Grew up on a cassava farm, now leads our field research.</div>
+    </div>
+    <!-- Vivian -->
+    <div class="team-card">
+      <div class="team-name">Vivian Nwosu</div>
+      <div class="team-role" data-i18n="role2">Head of Partnerships</div>
+      <div class="team-desc" data-i18n="team2">Connects us with cooperatives across West Africa.</div>
+    </div>
+    <!-- Johan -->
+    <div class="team-card">
+      <div class="team-name">Johan van den Berg</div>
+      <div class="team-role" data-i18n="role3">Lead Engineer, IoT</div>
+      <div class="team-desc" data-i18n="team3">Designs low‑cost sensors for smallholder farms.</div>
+    </div>
+    <!-- Preye -->
+    <div class="team-card">
+      <div class="team-name">Preye Robert</div>
+      <div class="team-role" data-i18n="role4">Community & Training</div>
+      <div class="team-desc" data-i18n="team4">Runs farmer workshops in the Delta region.</div>
+    </div>
+    <!-- Carlos -->
+    <div class="team-card">
+      <div class="team-name">Carlos Mendez</div>
+      <div class="team-role" data-i18n="role5">LatAm Partnerships</div>
+      <div class="team-desc" data-i18n="team5">Works with coffee and vine growers.</div>
+    </div>
+    <!-- Grace -->
+    <div class="team-card">
+      <div class="team-name">Grace Muiruri</div>
+      <div class="team-role" data-i18n="role6">Mental Health & Farmer Well‑being</div>
+      <div class="team-desc" data-i18n="team6">Develops our meditation and stress‑relief content.</div>
+    </div>
+  </div>
+
+  <!-- contact / join CTA -->
+  <div class="cta-block">
+    <h3 data-i18n="cta_about">Become part of our story.</h3>
+    <div class="price-detail" style="background: white; display: inline-block; padding: 0.5rem 2.2rem; border-radius: 40px; color: #2a784d; border: 1px solid #c0dfc0; font-size: 1.2rem; margin: 1rem 0;" data-i18n="contact_text">We're always looking for partners and collaborators.</div>
+    <div class="terms-links" style="margin: 0.5rem 0;">
+      <a href="#" data-i18n="contact_demo">Request a demo</a> | <span data-i18n="contact_team">Join our team</span>
+    </div>
+    <button class="cta-button" data-i18n="contact_button">Contact us</button>
+  </div>
+
+  <!-- footer -->
+  <div class="footer-links">
+    <a href="#" data-i18n="company">About us</a>
+    <a href="#" data-i18n="products">Farming resources</a>
+    <a href="#" data-i18n="business">For cooperatives</a>
+    <a href="#" data-i18n="help">Help & support</a>
+    <a href="#" data-i18n="cookie_pref">Cookie preferences</a>
+  </div>
+  <div class="cookie-note" data-i18n="cookie_notice">
+    AGH and its partners use cookies to improve your experience. By using our site, you agree to our Privacy Policy.
+  </div>
+  <hr>
+  <div class="disclaimer" data-i18n="disclaimer">about us template · for Acreage of Global Homestead</div>
+</div>
+
+<!-- translation engine (EN / ES) with about‑specific content -->
+<script>
+  (function() {
+    const translations = {
+      en: {
+        logo: "A G H",
+        translate_label: "🌾 Language",
+        about_headline: "Growing a smarter future.",
+        about_subhead: "About Acreage of Global Homestead",
+        about_tagline: "We blend tradition with technology to empower farmers worldwide.",
+        mission1_title: "Our Mission",
+        mission1_text: "To make precision agriculture accessible and sustainable for every farmer, from smallholdings to large cooperatives.",
+        mission2_title: "Our Approach",
+        mission2_text: "Direct B2B sales combined with channel partnerships – we meet farmers where they are.",
+        mission3_title: "Global Reach",
+        mission3_text: "Over 1 million farmers across five continents trust AGH to improve yields and well‑being.",
+        story_title: "Our story",
+        story_text: "Founded in 2018 by agronomists and software engineers, AGH started as a small project in the Niger Delta. We saw that farmers had incredible intuition but lacked real‑time data. Today we combine satellite imaging, IoT sensors, and meditation tools to care for both the land and the farmer.",
+        team_title: "Meet the cultivators",
+        team_sub: "People behind the platform",
+        role1: "Co‑founder, Chief Agronomist",
+        team1: "Grew up on a cassava farm, now leads our field research.",
+        role2: "Head of Partnerships",
+        team2: "Connects us with cooperatives across West Africa.",
+        role3: "Lead Engineer, IoT",
+        team3: "Designs low‑cost sensors for smallholder farms.",
+        role4: "Community & Training",
+        team4: "Runs farmer workshops in the Delta region.",
+        role5: "LatAm Partnerships",
+        team5: "Works with coffee and vine growers.",
+        role6: "Mental Health & Farmer Well‑being",
+        team6: "Develops our meditation and stress‑relief content.",
+        cta_about: "Become part of our story.",
+        contact_text: "We're always looking for partners and collaborators.",
+        contact_demo: "Request a demo",
+        contact_team: "Join our team",
+        contact_button: "Contact us",
+        company: "About us",
+        products: "Farming resources",
+        business: "For cooperatives",
+        help: "Help & support",
+        cookie_pref: "Cookie preferences",
+        cookie_notice: "AGH and its partners use cookies to improve your experience. By using our site, you agree to our Privacy Policy.",
+        disclaimer: "about us template · for Acreage of Global Homestead"
+      },
+      es: {
+        logo: "A G H",
+        translate_label: "🌾 Idioma",
+        about_headline: "Cultivando un futuro más inteligente.",
+        about_subhead: "Acerca de Acreage of Global Homestead",
+        about_tagline: "Combinamos tradición y tecnología para empoderar a agricultores de todo el mundo.",
+        mission1_title: "Nuestra misión",
+        mission1_text: "Hacer que la agricultura de precisión sea accesible y sostenible para cada agricultor, desde pequeñas parcelas hasta grandes cooperativas.",
+        mission2_title: "Nuestro enfoque",
+        mission2_text: "Ventas directas B2B combinadas con alianzas: llegamos a los agricultores donde están.",
+        mission3_title: "Alcance global",
+        mission3_text: "Más de 1 millón de agricultores en cinco continentes confían en AGH para mejorar rendimientos y bienestar.",
+        story_title: "Nuestra historia",
+        story_text: "Fundada en 2018 por agrónomos e ingenieros de software, AGH comenzó como un pequeño proyecto en el delta del Níger. Vimos que los agricultores tenían una intuición increíble pero carecían de datos en tiempo real. Hoy combinamos imágenes satelitales, sensores IoT y herramientas de meditación para cuidar la tierra y al agricultor.",
+        team_title: "Conoce a los cultivadores",
+        team_sub: "Personas detrás de la plataforma",
+        role1: "Co‑fundador, Jefe de Agronomía",
+        team1: "Creció en una granja de yuca, ahora lidera nuestra investigación de campo.",
+        role2: "Directora de Alianzas",
+        team2: "Nos conecta con cooperativas de toda África Occidental.",
+        role3: "Ingeniero líder, IoT",
+        team3: "Diseña sensores de bajo costo para pequeñas granjas.",
+        role4: "Comunidad y Formación",
+        team4: "Dirige talleres para agricultores en la región del Delta.",
+        role5: "Alianzas Latinoamérica",
+        team5: "Trabaja con caficultores y viticultores.",
+        role6: "Salud mental y bienestar",
+        team6: "Desarrolla nuestro contenido de meditación y alivio del estrés.",
+        cta_about: "Sé parte de nuestra historia.",
+        contact_text: "Siempre buscamos socios y colaboradores.",
+        contact_demo: "Solicita una demo",
+        contact_team: "Únete al equipo",
+        contact_button: "Contáctanos",
+        company: "Sobre nosotros",
+        products: "Recursos agrícolas",
+        business: "Para cooperativas",
+        help: "Ayuda y soporte",
+        cookie_pref: "Preferencias de cookies",
+        cookie_notice: "AGH y sus socios utilizan cookies para mejorar tu experiencia. Al usar nuestro sitio, aceptas nuestra Política de Privacidad.",
+        disclaimer: "plantilla acerca de · para Acreage of Global Homestead"
+      }
+    };
+
+    const langSelect = document.getElementById('lang-select');
+
+    function applyLanguage(lang) {
+      const elements = document.querySelectorAll('[data-i18n]');
+      elements.forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang] && translations[lang][key]) {
+          el.innerText = translations[lang][key];
+        }
+      });
+    }
+
+    langSelect.addEventListener('change', (e) => {
+      applyLanguage(e.target.value);
+    });
+
+    applyLanguage('en');
+  })();
+</script>
+</body>
+</html>
