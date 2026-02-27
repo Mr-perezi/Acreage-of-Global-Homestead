@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Try AGH · free trial</title>
+  <style>
+    /* ----- same style as default (help/coop pages) ----- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #f0f2e9;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      color: #1d3a2b;
+      line-height: 1.5;
+      padding: 1.5rem 1rem;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      background-color: #ffffff;
+      border-radius: 2.5rem;
+      box-shadow: 0 25px 45px -20px #2f4b3c;
+      overflow: hidden;
+      padding: 2.5rem 2rem;
+    }
+
+    /* top bar */
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .logo {
+      display: inline-flex;           /* Align icon and text */
+      align-items: center;            /* Vertically center */
+      gap: 0.75rem;                   /* Space between icon and text */
+      font-size: 1.8rem;
+      font-weight: 350;               /* Light weight – works best with a font that supports it */
+      font-family: 'Segoe UI', 'Helvetica Neue', sans-serif; /* Clean, modern fallback */
+      letter-spacing: -0.02em;
+      color: #2b6b4a;
+      border: 2px solid #c2d9c0;
+      border-radius: 60px;
+      padding: 0.2rem 1.5rem 0.2rem 1.2rem;  /* Slightly less left padding to balance icon */
+      background: #fafff8;
+      box-shadow: 0 4px 8px rgba(0, 40, 20, 0.06); /* Subtle depth */
+      transition: all 0.2s ease;      /* Smooth hover effect */
+      text-decoration: none;           /* If used as a link */
+    }
+
+    /* Hover effect for a little interactivity */
+    .logo:hover {
+      border-color: #9bbf9a;
+      background: #b1eba9;
+      box-shadow: 0 6px 12px rgba(43, 107, 74, 0.1);
+    }
+
+    /* The leaf icon – built with pure CSS */
+    .logo::before {
+      content: "";
+      display: inline-block;
+      width: 1.6rem;
+      height: 1.6rem;
+      background: #0a0ae5;              /* Match text color */
+      mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black"><path d="M12,2C9,7,4,9,4,14c0,4,4,6,8,6s8-2,8-6C20,9,15,7,12,2z M12,18c-2.5,0-6-1-6-4c0-2.5,2-5,5-8c3,3,5,5.5,5,8 C16,17,14.5,18,12,18z"/></svg>') no-repeat center;
+      mask-size: contain;
+      -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black"><path d="M12,2C9,7,4,9,4,14c0,4,4,6,8,6s8-2,8-6C20,9,15,7,12,2z M12,18c-2.5,0-6-1-6-4c0-2.5,2-5,5-8c3,3,5,5.5,5,8 C16,17,14.5,18,12,18z"/></svg>') no-repeat center;
+      -webkit-mask-size: contain;
+      background-color: #c6f539;        /* Fallback */
+    }
+
+
+    .translator-control {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: #e6f0e5;
+      padding: 0.4rem 1rem 0.4rem 1.5rem;
+      border-radius: 60px;
+      border: 1px solid #bcd5b6;
+    }
+
+    .translator-control label {
+      font-size: 0.9rem;
+      font-weight: 450;
+      color: #2a6e4d;
+    }
+
+    #lang-select {
+      background: white;
+      border: 1px solid #aacfaf;
+      border-radius: 30px;
+      padding: 0.4rem 1.2rem;
+      font-size: 1rem;
+      color: #1f6242;
+      font-weight: 450;
+      cursor: pointer;
+      outline: none;
+    }
+
+    /* hero */
+    .hero {
+      text-align: center;
+      max-width: 800px;
+      margin: 1rem auto 2rem;
+    }
+
+    .hero h1 {
+      font-size: 3.2rem;
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      color: #1d5235;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero .subhead {
+      font-size: 1.8rem;
+      font-weight: 320;
+      color: #3b7556;
+      margin-bottom: 1rem;
+    }
+
+    .hero .tagline {
+      font-size: 1.3rem;
+      font-weight: 290;
+      color: #528b6b;
+      border-bottom: 1px solid #dae5d3;
+      padding-bottom: 1.2rem;
+      margin-bottom: 1rem;
+    }
+
+    /* feature grid – using same card style */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2rem 1.5rem;
+      margin: 3rem 0;
+    }
+
+    .feature-card {
+      background: #f9fcf7;
+      border-radius: 1.8rem;
+      padding: 1.8rem 1.6rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+      border: 1px solid #ddebd9;
+      transition: all 0.15s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .feature-card:hover {
+      box-shadow: 0 18px 28px -16px #417a5b;
+      border-color: #b6d7b6;
+    }
+
+    .feature-icon {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .feature-title {
+      font-size: 1.6rem;
+      font-weight: 480;
+      color: #1f6642;
+      margin-bottom: 0.5rem;
+      line-height: 1.2;
+    }
+
+    .feature-desc {
+      color: #2a5c40;
+      font-weight: 360;
+      margin-bottom: 1.2rem;
+      flex: 1;
+    }
+
+    /* pricing / CTA block */
+    .cta-block {
+      background: #deecdd;
+      border-radius: 2.5rem;
+      padding: 2.8rem 2rem;
+      text-align: center;
+      margin: 3rem 0 2rem;
+    }
+
+    .cta-block h3 {
+      font-size: 2.2rem;
+      font-weight: 380;
+      color: #1c5f3c;
+      margin-bottom: 0.8rem;
+    }
+
+    .price-detail {
+      font-size: 1.3rem;
+      background: white;
+      display: inline-block;
+      padding: 0.5rem 2.2rem;
+      border-radius: 40px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+      margin: 1rem 0 0.5rem;
+      color: #2a784d;
+      border: 1px solid #c0dfc0;
+    }
+
+    .cta-button {
+      background: #2a7853;
+      border: none;
+      color: white;
+      font-size: 1.4rem;
+      font-weight: 430;
+      padding: 0.9rem 3rem;
+      border-radius: 60px;
+      cursor: pointer;
+      transition: background 0.2s;
+      box-shadow: 0 10px 18px -8px #246e47;
+      border: 1px solid #288f51;
+      margin: 1.2rem 0 0.5rem;
+    }
+
+    .cta-button:hover {
+      background: #1e6040;
+    }
+
+    /* testimonial / trust */
+    .testimonial-card {
+      background: #f9fcf7;
+      border-radius: 1.8rem;
+      padding: 1.8rem 1.6rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+      border: 1px solid #ddebd9;
+      transition: all 0.15s;
+      margin: 2rem 0;
+    }
+
+    .testimonial-card:hover {
+      box-shadow: 0 18px 28px -16px #417a5b;
+      border-color: #b6d7b6;
+    }
+
+    .testimonial-text {
+      font-size: 1.2rem;
+      color: #1a4b31;
+      margin-bottom: 1rem;
+      quotes: "“" "”" "‘" "’";
+      font-weight: 370;
+      line-height: 1.5;
+    }
+
+    .testimonial-text::before {
+      content: "“";
+      font-size: 2rem;
+      color: #8db892;
+      margin-right: 3px;
+      vertical-align: middle;
+    }
+
+    .testimonial-text::after {
+      content: "”";
+      font-size: 2rem;
+      color: #8db892;
+      margin-left: 3px;
+      vertical-align: bottom;
+    }
+
+    .author-name {
+      font-weight: 620;
+      color: #1f6642;
+      font-size: 1.1rem;
+    }
+
+    .author-location {
+      font-size: 0.95rem;
+      color: #679e7a;
+    }
+
+    /* footer */
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2.2rem;
+      margin-top: 3rem;
+      padding: 2rem 0 1rem;
+      border-top: 1px solid #d1dfcd;
+      font-size: 1rem;
+    }
+
+    .footer-links a {
+      text-decoration: none;
+      color: #2d7553;
+      font-weight: 460;
+    }
+
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
+
+    .cookie-note {
+      margin: 1.8rem auto 0.5rem;
+      font-size: 0.82rem;
+      color: #5f9178;
+      text-align: center;
+      max-width: 700px;
+      background: #f1f9ef;
+      padding: 0.8rem 1.8rem;
+      border-radius: 60px;
+    }
+
+    .cookie-note a {
+      color: #1f7a4b;
+    }
+
+    hr {
+      border: none;
+      border-top: 2px solid #dae5d3;
+      margin: 1rem 0;
+    }
+
+    .disclaimer {
+      text-align: center;
+      font-size: 0.75rem;
+      color: #86af93;
+      margin-top: 0.5rem;
+    }
+
+    @media (max-width: 600px) {
+      .container { padding: 1.8rem 1rem; }
+      .hero h1 { font-size: 2.5rem; }
+      .hero .subhead { font-size: 1.5rem; }
+      .top-bar { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <!-- top bar with logo and translator -->
+  <div class="top-bar">
+    <div class="logo" data-i18n="logo">A G H</div>
+    <div class="translator-control">
+      <label for="lang-select" data-i18n="translate_label">🌾 Language</label>
+      <select id="lang-select">
+        <option value="en" selected>English</option>
+        <option value="es">Español</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- hero for try page -->
+  <div class="hero">
+    <h1 data-i18n="try_headline">Experience the future of farming</h1>
+    <div class="subhead" data-i18n="try_subhead">Try AGH Premium free for 30 days</div>
+    <div class="tagline" data-i18n="try_tagline">No credit card required. Cancel anytime.</div>
+  </div>
+
+  <!-- feature highlights (3 cards) -->
+  <div class="feature-grid">
+    <div class="feature-card">
+      <div class="feature-icon">📡</div>
+      <div class="feature-title" data-i18n="feature1_title">Precision farming tools</div>
+      <div class="feature-desc" data-i18n="feature1_desc">Soil health, weather, and crop advice tailored to your fields.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🤝</div>
+      <div class="feature-title" data-i18n="feature2_title">Cooperative management</div>
+      <div class="feature-desc" data-i18n="feature2_desc">Group dashboards, harvest coordination, and bulk purchasing.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🧘</div>
+      <div class="feature-title" data-i18n="feature3_title">Farmer well‑being</div>
+      <div class="feature-desc" data-i18n="feature3_desc">Guided meditation and stress relief designed for agricultural life.</div>
+    </div>
+  </div>
+
+  <!-- pricing & trial details -->
+  <div class="cta-block">
+    <h3 data-i18n="try_cta_title">Start your 30‑day free trial</h3>
+    <div class="price-detail" data-i18n="try_price">After trial: $49.99/year or $9.99/month</div>
+    <div class="terms-links" style="margin: 0.5rem 0;">
+      <a href="#" data-i18n="try_terms">Terms apply</a> | <span data-i18n="try_cancel">Cancel anytime</span>
+    </div>
+    <a href="start_free_trial.html"><button class="cta-button" data-i18n="try_button">Start free trial</button>
+  </div>
+
+  <!-- trust / testimonial -->
+  <div class="testimonial-card">
+    <div class="testimonial-text" data-i18n="try_testimonial">
+      I was skeptical at first, but after 30 days our cooperative saved 15% on inputs and my stress levels dropped. AGH is a game changer.
+    </div>
+    <div class="author-name">David Mwangi</div>
+    <span class="author-location" data-i18n="try_test_loc">Coffee farmer, Kenya</span>
+  </div>
+
+  <!-- footer -->
+  <div class="footer-links">
+    <a href="about_us.html" data-i18n="company">About us</a>
+    <a href="Farm_resource.html" data-i18n="products">Farming resources</a>
+    <a href="cooperative.html" data-i18n="business">For cooperatives</a>
+    <a href="Help_&_Support.html" data-i18n="help">Help & support</a>
+    <a href="#" data-i18n="cookie_pref">Cookie preferences</a>
+  </div>
+  <div class="cookie-note" data-i18n="cookie_notice">
+    AGH and its partners use cookies to improve your experience. By using our site, you agree to our Privacy Policy.
+  </div>
+  <hr>
+  <div class="disclaimer" data-i18n="disclaimer">try AGH page · Acreage of Global Homestead</div>
+</div>
+
+<!-- translation engine (EN / ES) with try-page content -->
+<script>
+  (function() {
+    const translations = {
+      en: {
+        logo: "A G H",
+        translate_label: "🌾 Language",
+        try_headline: "Experience the future of farming",
+        try_subhead: "Try AGH Premium free for 30 days",
+        try_tagline: "No credit card required. Cancel anytime.",
+        feature1_title: "Precision farming tools",
+        feature1_desc: "Soil health, weather, and crop advice tailored to your fields.",
+        feature2_title: "Cooperative management",
+        feature2_desc: "Group dashboards, harvest coordination, and bulk purchasing.",
+        feature3_title: "Farmer well‑being",
+        feature3_desc: "Guided meditation and stress relief designed for agricultural life.",
+        try_cta_title: "Start your 30‑day free trial",
+        try_price: "After trial: $49.99/year or $9.99/month",
+        try_terms: "Terms apply",
+        try_cancel: "Cancel anytime",
+        try_button: "Start free trial",
+        try_testimonial: "I was skeptical at first, but after 30 days our cooperative saved 15% on inputs and my stress levels dropped. AGH is a game changer.",
+        try_test_loc: "Coffee farmer, Kenya",
+        company: "About us",
+        products: "Farming resources",
+        business: "For cooperatives",
+        help: "Help & support",
+        cookie_pref: "Cookie preferences",
+        cookie_notice: "AGH and its partners use cookies to improve your experience. By using our site, you agree to our Privacy Policy.",
+        disclaimer: "try AGH page · Acreage of Global Homestead"
+      },
+      es: {
+        logo: "A G H",
+        translate_label: "🌾 Idioma",
+        try_headline: "Experimenta el futuro de la agricultura",
+        try_subhead: "Prueba AGH Premium gratis por 30 días",
+        try_tagline: "Sin tarjeta de crédito. Cancela cuando quieras.",
+        feature1_title: "Herramientas de precisión",
+        feature1_desc: "Salud del suelo, clima y consejos de cultivo adaptados a tus campos.",
+        feature2_title: "Gestión cooperativa",
+        feature2_desc: "Paneles grupales, coordinación de cosechas y compras al por mayor.",
+        feature3_title: "Bienestar del agricultor",
+        feature3_desc: "Meditación guiada y alivio del estrés diseñados para la vida agrícola.",
+        try_cta_title: "Comienza tu prueba gratuita de 30 días",
+        try_price: "Después de la prueba: $49.99/año o $9.99/mes",
+        try_terms: "Términos aplicables",
+        try_cancel: "Cancela cuando quieras",
+        try_button: "Iniciar prueba gratis",
+        try_testimonial: "Al principio era escéptico, pero después de 30 días nuestra cooperativa ahorró un 15% en insumos y mi estrés disminuyó. AGH cambia las reglas del juego.",
+        try_test_loc: "Caficultor, Kenia",
+        company: "Sobre nosotros",
+        products: "Recursos agrícolas",
+        business: "Para cooperativas",
+        help: "Ayuda y soporte",
+        cookie_pref: "Preferencias de cookies",
+        cookie_notice: "AGH y sus socios utilizan cookies para mejorar tu experiencia. Al usar nuestro sitio, aceptas nuestra Política de Privacidad.",
+        disclaimer: "página prueba AGH · Acreage of Global Homestead"
+      }
+    };
+
+    const langSelect = document.getElementById('lang-select');
+
+    function applyLanguage(lang) {
+      const elements = document.querySelectorAll('[data-i18n]');
+      elements.forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang] && translations[lang][key]) {
+          el.innerText = translations[lang][key];
+        }
+      });
+    }
+
+    langSelect.addEventListener('change', (e) => {
+      applyLanguage(e.target.value);
+    });
+
+    applyLanguage('en');
+  })();
+</script>
+</body>
+</html>

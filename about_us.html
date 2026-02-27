@@ -40,15 +40,44 @@
     }
 
     .logo {
+      display: inline-flex;           /* Align icon and text */
+      align-items: center;            /* Vertically center */
+      gap: 0.75rem;                   /* Space between icon and text */
       font-size: 1.8rem;
-      font-weight: 350;
+      font-weight: 350;               /* Light weight – works best with a font that supports it */
+      font-family: 'Segoe UI', 'Helvetica Neue', sans-serif; /* Clean, modern fallback */
       letter-spacing: -0.02em;
       color: #2b6b4a;
       border: 2px solid #c2d9c0;
       border-radius: 60px;
-      padding: 0.2rem 1.5rem;
+      padding: 0.2rem 1.5rem 0.2rem 1.2rem;  /* Slightly less left padding to balance icon */
       background: #fafff8;
+      box-shadow: 0 4px 8px rgba(0, 40, 20, 0.06); /* Subtle depth */
+      transition: all 0.2s ease;      /* Smooth hover effect */
+      text-decoration: none;           /* If used as a link */
     }
+
+    /* Hover effect for a little interactivity */
+    .logo:hover {
+      border-color: #9bbf9a;
+      background: #b1eba9;
+      box-shadow: 0 6px 12px rgba(43, 107, 74, 0.1);
+    }
+
+    /* The leaf icon – built with pure CSS */
+    .logo::before {
+      content: "";
+      display: inline-block;
+      width: 1.6rem;
+      height: 1.6rem;
+      background: #0a0ae5;              /* Match text color */
+      mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black"><path d="M12,2C9,7,4,9,4,14c0,4,4,6,8,6s8-2,8-6C20,9,15,7,12,2z M12,18c-2.5,0-6-1-6-4c0-2.5,2-5,5-8c3,3,5,5.5,5,8 C16,17,14.5,18,12,18z"/></svg>') no-repeat center;
+      mask-size: contain;
+      -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black"><path d="M12,2C9,7,4,9,4,14c0,4,4,6,8,6s8-2,8-6C20,9,15,7,12,2z M12,18c-2.5,0-6-1-6-4c0-2.5,2-5,5-8c3,3,5,5.5,5,8 C16,17,14.5,18,12,18z"/></svg>') no-repeat center;
+      -webkit-mask-size: contain;
+      background-color: #c6f539;        /* Fallback */
+    }
+
 
     .translator-control {
       display: flex;
@@ -407,10 +436,10 @@
 
   <!-- footer -->
   <div class="footer-links">
-    <a href="#" data-i18n="company">About us</a>
-    <a href="#" data-i18n="products">Farming resources</a>
-    <a href="#" data-i18n="business">For cooperatives</a>
-    <a href="#" data-i18n="help">Help & support</a>
+    <a href="about_us.html" data-i18n="company">About us</a>
+    <a href="Farm_resource.html" data-i18n="products">Farming resources</a>
+    <a href="cooperative.html" data-i18n="business">For cooperatives</a>
+    <a href="Help_&_Support.html" data-i18n="help">Help & support</a>
     <a href="#" data-i18n="cookie_pref">Cookie preferences</a>
   </div>
   <div class="cookie-note" data-i18n="cookie_notice">

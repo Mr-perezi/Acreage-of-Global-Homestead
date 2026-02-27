@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Start free trial · AGH</title>
+  <style>
+    /* ----- same earthy style with form additions ----- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(145deg, #e7f0e3 0%, #d4e2d0 100%);
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      color: #1d3a2b;
+      line-height: 1.5;
+      padding: 1.8rem 1rem;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      background-color: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(2px);
+      border-radius: 3.5rem;
+      box-shadow: 0 30px 50px -20px #1e4a33, 0 0 0 1px rgba(180, 210, 170, 0.4);
+      overflow: hidden;
+      padding: 2.8rem 2.5rem;
+    }
+
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem 2rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .logo {
+      display: inline-flex;           /* Align icon and text */
+      align-items: center;            /* Vertically center */
+      gap: 0.75rem;                   /* Space between icon and text */
+      font-size: 1.8rem;
+      font-weight: 350;               /* Light weight – works best with a font that supports it */
+      font-family: 'Segoe UI', 'Helvetica Neue', sans-serif; /* Clean, modern fallback */
+      letter-spacing: -0.02em;
+      color: #2b6b4a;
+      border: 2px solid #c2d9c0;
+      border-radius: 60px;
+      padding: 0.2rem 1.5rem 0.2rem 1.2rem;  /* Slightly less left padding to balance icon */
+      background: #fafff8;
+      box-shadow: 0 4px 8px rgba(0, 40, 20, 0.06); /* Subtle depth */
+      transition: all 0.2s ease;      /* Smooth hover effect */
+      text-decoration: none;           /* If used as a link */
+    }
+
+    /* Hover effect for a little interactivity */
+    .logo:hover {
+      border-color: #9bbf9a;
+      background: #b1eba9;
+      box-shadow: 0 6px 12px rgba(43, 107, 74, 0.1);
+    }
+
+    /* The leaf icon – built with pure CSS */
+    .logo::before {
+      content: "";
+      display: inline-block;
+      width: 1.6rem;
+      height: 1.6rem;
+      background: #0a0ae5;              /* Match text color */
+      mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black"><path d="M12,2C9,7,4,9,4,14c0,4,4,6,8,6s8-2,8-6C20,9,15,7,12,2z M12,18c-2.5,0-6-1-6-4c0-2.5,2-5,5-8c3,3,5,5.5,5,8 C16,17,14.5,18,12,18z"/></svg>') no-repeat center;
+      mask-size: contain;
+      -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black"><path d="M12,2C9,7,4,9,4,14c0,4,4,6,8,6s8-2,8-6C20,9,15,7,12,2z M12,18c-2.5,0-6-1-6-4c0-2.5,2-5,5-8c3,3,5,5.5,5,8 C16,17,14.5,18,12,18z"/></svg>') no-repeat center;
+      -webkit-mask-size: contain;
+      background-color: #c6f539;        /* Fallback */
+    }
+
+
+    .translator-control {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: #f0fcee;
+      padding: 0.4rem 1.2rem 0.4rem 1.8rem;
+      border-radius: 40px;
+      border: 1px solid #b1dbb2;
+      box-shadow: inset 0 1px 4px #ffffff, 0 4px 8px #c2ddc0;
+    }
+
+    .translator-control label {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: #2b7653;
+    }
+
+    #lang-select {
+      background: white;
+      border: 1px solid #9fc8a5;
+      border-radius: 40px;
+      padding: 0.45rem 1.5rem;
+      font-size: 1rem;
+      color: #1e613f;
+      font-weight: 500;
+      cursor: pointer;
+      outline: none;
+      transition: all 0.2s;
+    }
+    #lang-select:hover {
+      border-color: #548b5e;
+      background: #f6fff2;
+    }
+
+    /* hero */
+    .hero {
+      display: flex;
+      gap: 2.5rem;
+      align-items: center;
+      margin: 1.5rem 0 3rem;
+      flex-wrap: wrap;
+    }
+
+    .hero-text {
+      flex: 1 1 300px;
+    }
+
+    .hero-text h1 {
+      font-size: 3.8rem;
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      color: #175a37;
+      margin-bottom: 0.5rem;
+      text-shadow: 0 2px 5px #eaffdd;
+    }
+
+    .hero-text .subhead {
+      font-size: 2rem;
+      font-weight: 300;
+      color: #3a7257;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-text .tagline {
+      font-size: 1.3rem;
+      font-weight: 280;
+      color: #588f70;
+      background: #e9f5e4;
+      display: inline-block;
+      padding: 0.3rem 1.8rem;
+      border-radius: 40px;
+      border: 1px solid #b6dfb6;
+    }
+
+    .hero-image {
+      flex: 1 1 300px;
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: 320px;
+      object-fit: cover;
+      border-radius: 2.8rem;
+      box-shadow: 0 20px 35px -8px #3f6d4f;
+      border: 3px solid rgba(255, 255, 255, 0.6);
+      transition: transform 0.3s ease;
+    }
+    .hero-image img:hover {
+      transform: scale(1.01);
+    }
+
+    /* feature grid (smaller, 2 cards now) */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem 1.8rem;
+      margin: 4rem 0 2rem;
+    }
+
+    .feature-card {
+      background: #ffffffec;
+      border-radius: 2.4rem;
+      padding: 0 0 1.8rem 0;
+      box-shadow: 0 12px 28px -16px #1c4d33, 0 0 0 1px #dcf0db;
+      transition: all 0.25s;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      border: 1px solid #d2ebd2;
+    }
+
+    .feature-card:hover {
+      box-shadow: 0 30px 40px -20px #256f46;
+      border-color: #9fd2a8;
+      transform: translateY(-5px);
+    }
+
+    .card-img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-bottom: 3px solid #c7e6c7;
+      transition: transform 0.3s;
+    }
+    .feature-card:hover .card-img {
+      transform: scale(1.02);
+    }
+
+    .feature-icon {
+      font-size: 2rem;
+      margin: 1.2rem 1.6rem 0.2rem;
+    }
+
+    .feature-title {
+      font-size: 1.6rem;
+      font-weight: 500;
+      color: #1f6a40;
+      margin: 0.2rem 1.6rem 0.3rem;
+      line-height: 1.2;
+    }
+
+    .feature-desc {
+      color: #2f5f45;
+      font-weight: 360;
+      margin: 0 1.6rem 0.8rem;
+      flex: 1;
+    }
+
+    /* ----- SIGN-UP FORM (replaces old cta-block) ----- */
+    .signup-block {
+      background: linear-gradient(125deg, #e1f3dd, #c8e8cb);
+      border-radius: 3rem;
+      padding: 3rem 2.5rem;
+      margin: 2.5rem 0 3rem;
+      box-shadow: inset 0 2px 10px white, 0 20px 30px -15px #2c694a;
+      border: 1px solid #afdab2;
+    }
+
+    .signup-inner {
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .signup-inner h2 {
+      font-size: 2.3rem;
+      font-weight: 380;
+      color: #125732;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.01em;
+    }
+
+    .signup-inner .sub {
+      font-size: 1.2rem;
+      color: #266545;
+      margin-bottom: 2.2rem;
+    }
+
+    .trial-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      background: rgba(255,255,255,0.6);
+      padding: 2.5rem 2rem;
+      border-radius: 3rem;
+      backdrop-filter: blur(4px);
+      border: 1px solid #c2e0c2;
+    }
+
+    .form-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .form-group {
+      flex: 1 1 200px;
+      text-align: left;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #1b6a40;
+      margin-bottom: 0.3rem;
+      padding-left: 0.5rem;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 0.9rem 1.5rem;
+      border: 1px solid #b1dbb2;
+      border-radius: 60px;
+      font-size: 1rem;
+      background: white;
+      transition: all 0.2s;
+      outline: none;
+    }
+
+    .form-group input:focus {
+      border-color: #308a50;
+      box-shadow: 0 0 0 4px #daf5dc;
+    }
+
+    .checkbox-group {
+      flex-direction: row;
+      align-items: center;
+      gap: 0.8rem;
+      justify-content: center;
+      margin: 0.5rem 0;
+    }
+    .checkbox-group input {
+      width: 1.3rem;
+      height: 1.3rem;
+      accent-color: #308a50;
+      margin: 0;
+    }
+    .checkbox-group label {
+      font-size: 0.95rem;
+      color: #1e5e3d;
+      margin: 0;
+    }
+
+    .trial-submit {
+      background: #1a6f41;
+      border: none;
+      color: white;
+      font-size: 1.6rem;
+      font-weight: 450;
+      padding: 1rem 2.5rem;
+      border-radius: 70px;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+      box-shadow: 0 15px 25px -8px #1b613a, 0 2px 0 0 #47975f inset;
+      border: 1px solid #97cf9f;
+      margin-top: 1rem;
+      width: 100%;
+    }
+    .trial-submit:hover {
+      background: #115e34;
+      box-shadow: 0 18px 28px -8px #195a36;
+      transform: scale(1.01);
+    }
+
+    .legal-note {
+      font-size: 0.85rem;
+      color: #367a53;
+      margin-top: 1rem;
+    }
+    .legal-note a {
+      color: #115e34;
+    }
+
+    /* testimonial (adjusted) */
+    .testimonial-card {
+      background: #fafff7;
+      border-radius: 2.5rem;
+      padding: 2.2rem 2.5rem;
+      box-shadow: 0 20px 30px -18px #295f41;
+      border: 1px solid #c8e6cb;
+      margin: 2.5rem 0;
+      display: flex;
+      gap: 2.2rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .testimonial-img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid #e9ffe3;
+      box-shadow: 0 10px 20px #8bbf95;
+    }
+
+    .testimonial-content {
+      flex: 1;
+      min-width: 250px;
+    }
+
+    .testimonial-text {
+      font-size: 1.3rem;
+      color: #1a5237;
+      margin-bottom: 1rem;
+      quotes: "“" "”" "‘" "’";
+      font-weight: 360;
+      line-height: 1.5;
+    }
+
+    .testimonial-text::before {
+      content: "“";
+      font-size: 2.4rem;
+      color: #7fbc8b;
+      margin-right: 5px;
+      vertical-align: middle;
+    }
+
+    .testimonial-text::after {
+      content: "”";
+      font-size: 2.4rem;
+      color: #7fbc8b;
+      margin-left: 5px;
+      vertical-align: bottom;
+    }
+
+    .author-name {
+      font-weight: 650;
+      color: #1c6e40;
+      font-size: 1.2rem;
+    }
+
+    .author-location {
+      font-size: 1rem;
+      color: #588f70;
+    }
+
+    /* footer */
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2.5rem;
+      margin-top: 3.5rem;
+      padding: 2rem 0 1.2rem;
+      border-top: 2px solid #c0ddc0;
+      font-size: 1rem;
+    }
+
+    .footer-links a {
+      text-decoration: none;
+      color: #25754b;
+      font-weight: 500;
+      transition: color 0.2s;
+      border-bottom: 1px solid transparent;
+    }
+
+    .footer-links a:hover {
+      color: #0a4529;
+      border-bottom-color: #467a55;
+    }
+
+    .cookie-note {
+      margin: 1.5rem auto 0.5rem;
+      font-size: 0.85rem;
+      color: #568d6f;
+      text-align: center;
+      max-width: 800px;
+      background: #e6f7e4;
+      padding: 0.7rem 2rem;
+      border-radius: 40px;
+      border: 1px solid #b1dbb2;
+    }
+
+    .cookie-note a {
+      color: #1c7542;
+    }
+
+    hr {
+      border: none;
+      border-top: 2px solid #cbdec9;
+      margin: 1.2rem 0 0.5rem;
+    }
+
+    .disclaimer {
+      text-align: center;
+      font-size: 0.78rem;
+      color: #7faa8b;
+      margin-top: 0.5rem;
+    }
+    .photo-credit {
+      text-align: center;
+      font-size: 0.7rem;
+      color: #98b9a0;
+      margin-top: 0.2rem;
+    }
+    .photo-credit a {
+      color: #467f58;
+    }
+
+    @media (max-width: 700px) {
+      .container { padding: 1.8rem 1rem; }
+      .hero-text h1 { font-size: 2.8rem; }
+      .hero-text .subhead { font-size: 1.6rem; }
+      .testimonial-card { flex-direction: column; text-align: center; }
+      .testimonial-img { margin: 0 auto; }
+      .top-bar { flex-direction: column; align-items: flex-start; }
+      .signup-block { padding: 2rem 1rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <!-- top bar unchanged -->
+  <div class="top-bar">
+    <div class="logo" data-i18n="logo">A G H</div>
+    <div class="translator-control">
+      <label for="lang-select" data-i18n="translate_label">🌾 Language</label>
+      <select id="lang-select">
+        <option value="en" selected>English</option>
+        <option value="es">Español</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- hero slightly adjusted: headline emphasizes "start" -->
+  <div class="hero">
+    <div class="hero-text">
+      <h1 data-i18n="try_headline">Start your free trial today</h1>
+      <div class="subhead" data-i18n="try_subhead">AGH Premium · 30 days free</div>
+      <div class="tagline" data-i18n="try_tagline">No credit card required. Cancel anytime.</div>
+    </div>
+    <div class="hero-image">
+      <img src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=800&h=600&fit=crop&auto=format" alt="Vast green farmland with tractor" loading="lazy">
+    </div>
+  </div>
+
+  <!-- feature highlights (reduced to 2 core benefits) -->
+  <div class="feature-grid">
+    <div class="feature-card">
+      <img class="card-img" src="https://images.unsplash.com/photo-1586771107445-d3ca888129ff?w=600&h=400&fit=crop&auto=format" alt="Farmer using digital tablet" loading="lazy">
+      <div class="feature-icon">📡</div>
+      <div class="feature-title" data-i18n="feature1_title">Precision tools</div>
+      <div class="feature-desc" data-i18n="feature1_desc">Soil health, weather, crop advice tailored to your fields.</div>
+    </div>
+    <div class="feature-card">
+      <img class="card-img" src="https://images.unsplash.com/photo-1574943320219-553eb673f3d7?w=600&h=400&fit=crop&auto=format" alt="Group of farmers cooperating" loading="lazy">
+      <div class="feature-icon">🤝</div>
+      <div class="feature-title" data-i18n="feature2_title">Cooperative mgmt</div>
+      <div class="feature-desc" data-i18n="feature2_desc">Group dashboards, harvest coordination, bulk purchasing.</div>
+    </div>
+  </div>
+
+  <!-- SIGN-UP FORM BLOCK (replaces old cta block) -->
+  <div class="signup-block">
+    <div class="signup-inner">
+      <h2 data-i18n="signup_head">Start your 30‑day trial</h2>
+      <div class="sub" data-i18n="signup_sub">Join thousands of farmers already using AGH</div>
+      
+      <form class="trial-form" onsubmit="event.preventDefault(); alert('Trial started (demo). Thanks!');">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="first-name" data-i18n="firstname">First name</label>
+            <input type="text" id="first-name" placeholder="Maria" required>
+          </div>
+          <div class="form-group">
+            <label for="last-name" data-i18n="lastname">Last name</label>
+            <input type="text" id="last-name" placeholder="Garcia" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="email" data-i18n="email">Email address</label>
+          <input type="email" id="email" placeholder="maria@coop.com" required>
+        </div>
+
+        <div class="form-group">
+          <label for="password" data-i18n="password">Create password</label>
+          <input type="password" id="password" placeholder="········" minlength="8" required>
+        </div>
+
+        <div class="form-row checkbox-group">
+          <input type="checkbox" id="terms" checked required>
+          <label for="terms" data-i18n="agree_terms">I agree to the Terms and Privacy Policy.</label>
+        </div>
+
+        <button type="submit" class="trial-submit" data-i18n="start_trial_btn">Start my free trial</button>
+        <div class="legal-note" data-i18n="trial_legal">Free for 30 days, then $49.99/year or $9.99/month. Cancel anytime.</div>
+      </form>
+    </div>
+  </div>
+
+  <!-- testimonial (same as before, adds trust) -->
+  <div class="testimonial-card">
+    <img class="testimonial-img" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f4d?w=300&h=300&fit=crop&auto=format" alt="Portrait of David Mwangi, coffee farmer" loading="lazy">
+    <div class="testimonial-content">
+      <div class="testimonial-text" data-i18n="try_testimonial">
+        I was skeptical at first, but after 30 days our cooperative saved 15% on inputs and my stress levels dropped. AGH is a game changer.
+      </div>
+      <div class="author-name">David Mwangi</div>
+      <span class="author-location" data-i18n="try_test_loc">Coffee farmer, Kenya</span>
+    </div>
+  </div>
+
+  <!-- footer unchanged -->
+  <div class="footer-links">
+    <a href="about_us.html" data-i18n="company">About us</a>
+    <a href="Farm_resource.html" data-i18n="products">Farming resources</a>
+    <a href="cooperative.html" data-i18n="business">For cooperatives</a>
+    <a href="Help_&_Support.html" data-i18n="help">Help & support</a>
+    <a href="#" data-i18n="cookie_pref">Cookie preferences</a>
+  </div>
+  <div class="cookie-note" data-i18n="cookie_notice">
+    AGH and its partners use cookies to improve your experience. By using our site, you agree to our Privacy Policy.
+  </div>
+  <hr>
+  <div class="disclaimer" data-i18n="disclaimer">try AGH page · Acreage of Global Homestead</div>
+  <div class="photo-credit">🌱 <a href="https://unsplash.com">Photos from Unsplash</a> · representing sustainable farming</div>
+</div>
+
+<!-- translation engine (EN / ES) – updated with form labels -->
+<script>
+  (function() {
+    const translations = {
+      en: {
+        logo: "A G H",
+        translate_label: "🌾 Language",
+        try_headline: "Start your free trial today",
+        try_subhead: "AGH Premium · 30 days free",
+        try_tagline: "No credit card required. Cancel anytime.",
+        feature1_title: "Precision tools",
+        feature1_desc: "Soil health, weather, crop advice tailored to your fields.",
+        feature2_title: "Cooperative mgmt",
+        feature2_desc: "Group dashboards, harvest coordination, bulk purchasing.",
+        signup_head: "Start your 30‑day trial",
+        signup_sub: "Join thousands of farmers already using AGH",
+        firstname: "First name",
+        lastname: "Last name",
+        email: "Email address",
+        password: "Create password",
+        agree_terms: "I agree to the Terms and Privacy Policy.",
+        start_trial_btn: "Start my free trial",
+        trial_legal: "Free for 30 days, then $49.99/year or $9.99/month. Cancel anytime.",
+        try_testimonial: "I was skeptical at first, but after 30 days our cooperative saved 15% on inputs and my stress levels dropped. AGH is a game changer.",
+        try_test_loc: "Coffee farmer, Kenya",
+        company: "About us",
+        products: "Farming resources",
+        business: "For cooperatives",
+        help: "Help & support",
+        cookie_pref: "Cookie preferences",
+        cookie_notice: "AGH and its partners use cookies to improve your experience. By using our site, you agree to our Privacy Policy.",
+        disclaimer: "try AGH page · Acreage of Global Homestead"
+      },
+      es: {
+        logo: "A G H",
+        translate_label: "🌾 Idioma",
+        try_headline: "Comienza tu prueba gratis hoy",
+        try_subhead: "AGH Premium · 30 días gratis",
+        try_tagline: "Sin tarjeta de crédito. Cancela cuando quieras.",
+        feature1_title: "Herramientas de precisión",
+        feature1_desc: "Salud del suelo, clima y consejos de cultivo adaptados.",
+        feature2_title: "Gestión cooperativa",
+        feature2_desc: "Paneles grupales, coordinación de cosechas y compras al por mayor.",
+        signup_head: "Comienza tu prueba de 30 días",
+        signup_sub: "Únete a miles de agricultores que ya usan AGH",
+        firstname: "Nombre",
+        lastname: "Apellido",
+        email: "Correo electrónico",
+        password: "Crea una contraseña",
+        agree_terms: "Acepto los Términos y la Política de Privacidad.",
+        start_trial_btn: "Iniciar mi prueba gratis",
+        trial_legal: "Gratis por 30 días, después $49.99/año o $9.99/mes. Cancela cuando quieras.",
+        try_testimonial: "Al principio era escéptico, pero después de 30 días nuestra cooperativa ahorró un 15% en insumos y mi estrés disminuyó. AGH cambia las reglas del juego.",
+        try_test_loc: "Caficultor, Kenia",
+        company: "Sobre nosotros",
+        products: "Recursos agrícolas",
+        business: "Para cooperativas",
+        help: "Ayuda y soporte",
+        cookie_pref: "Preferencias de cookies",
+        cookie_notice: "AGH y sus socios utilizan cookies para mejorar tu experiencia. Al usar nuestro sitio, aceptas nuestra Política de Privacidad.",
+        disclaimer: "página prueba AGH · Acreage of Global Homestead"
+      }
+    };
+
+    const langSelect = document.getElementById('lang-select');
+
+    function applyLanguage(lang) {
+      const elements = document.querySelectorAll('[data-i18n]');
+      elements.forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang] && translations[lang][key]) {
+          // For input placeholders we need to handle separately (but we don't have placeholders with i18n yet)
+          // For simplicity, only innerText for labels, etc. Placeholders remain hardcoded, but could extend.
+          // We'll add a simple placeholder update for input fields if needed later.
+          if (el.tagName === 'INPUT') {
+            // we don't have placeholder keys; skip
+          } else {
+            el.innerText = translations[lang][key];
+          }
+        }
+      });
+      // update placeholders manually (few)
+      if (lang === 'es') {
+        document.getElementById('first-name').placeholder = 'María';
+        document.getElementById('last-name').placeholder = 'García';
+        document.getElementById('email').placeholder = 'maria@cooperativa.com';
+        document.getElementById('password').placeholder = '········';
+      } else {
+        document.getElementById('first-name').placeholder = 'Maria';
+        document.getElementById('last-name').placeholder = 'Garcia';
+        document.getElementById('email').placeholder = 'maria@coop.com';
+        document.getElementById('password').placeholder = '········';
+      }
+    }
+
+    langSelect.addEventListener('change', (e) => {
+      applyLanguage(e.target.value);
+    });
+
+    applyLanguage('en');
+  })();
+</script>
+</body>
+</html>

@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us · Acreage of Global Homestead</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #f0f2e9;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      color: #1d3a2b;
+      line-height: 1.5;
+      padding: 1.5rem 1rem;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      background-color: #ffffff;
+      border-radius: 2.5rem;
+      box-shadow: 0 25px 45px -20px #2f4b3c;
+      overflow: hidden;
+      padding: 2.5rem 2rem;
+    }
+
+    /* top bar */
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 1.8rem;
+      font-weight: 350;
+      font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
+      letter-spacing: -0.02em;
+      color: #2b6b4a;
+      border: 2px solid #c2d9c0;
+      border-radius: 60px;
+      padding: 0.2rem 1.5rem 0.2rem 1.2rem;
+      background: #fafff8;
+      box-shadow: 0 4px 8px rgba(0, 40, 20, 0.06);
+      transition: all 0.2s ease;
+      text-decoration: none;
+    }
+
+    .logo:hover {
+      border-color: #9bbf9a;
+      background: #b1eba9;
+      box-shadow: 0 6px 12px rgba(43, 107, 74, 0.1);
+    }
+
+    .logo::before {
+      content: "";
+      display: inline-block;
+      width: 1.6rem;
+      height: 1.6rem;
+      background: #0a0ae5;
+      mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black"><path d="M12,2C9,7,4,9,4,14c0,4,4,6,8,6s8-2,8-6C20,9,15,7,12,2z M12,18c-2.5,0-6-1-6-4c0-2.5,2-5,5-8c3,3,5,5.5,5,8 C16,17,14.5,18,12,18z"/></svg>') no-repeat center;
+      mask-size: contain;
+      -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black"><path d="M12,2C9,7,4,9,4,14c0,4,4,6,8,6s8-2,8-6C20,9,15,7,12,2z M12,18c-2.5,0-6-1-6-4c0-2.5,2-5,5-8c3,3,5,5.5,5,8 C16,17,14.5,18,12,18z"/></svg>') no-repeat center;
+      -webkit-mask-size: contain;
+      background-color: #c6f539;
+    }
+
+    .translator-control {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: #e6f0e5;
+      padding: 0.4rem 1rem 0.4rem 1.5rem;
+      border-radius: 60px;
+      border: 1px solid #bcd5b6;
+    }
+
+    .translator-control label {
+      font-size: 0.9rem;
+      font-weight: 450;
+      color: #2a6e4d;
+    }
+
+    #lang-select {
+      background: white;
+      border: 1px solid #aacfaf;
+      border-radius: 30px;
+      padding: 0.4rem 1.2rem;
+      font-size: 1rem;
+      color: #1f6242;
+      font-weight: 450;
+      cursor: pointer;
+      outline: none;
+    }
+
+    /* hero */
+    .hero {
+      text-align: center;
+      max-width: 800px;
+      margin: 1rem auto 2rem;
+    }
+
+    .hero h1 {
+      font-size: 3.2rem;
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      color: #1d5235;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero .subhead {
+      font-size: 1.8rem;
+      font-weight: 320;
+      color: #3b7556;
+      margin-bottom: 1rem;
+    }
+
+    /* contact grid */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      margin: 3rem 0;
+    }
+
+    .contact-info {
+      background: #f9fcf7;
+      border-radius: 2rem;
+      padding: 2rem;
+      border: 1px solid #ddebd9;
+    }
+
+    .info-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.8rem;
+    }
+
+    .info-icon {
+      font-size: 2rem;
+      background: #e6f3e6;
+      width: 3.5rem;
+      height: 3.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+    }
+
+    .info-text {
+      font-size: 1.1rem;
+      color: #2d6446;
+    }
+
+    .info-text strong {
+      color: #1c5f3c;
+      font-weight: 600;
+    }
+
+    .contact-form {
+      background: #f9fcf7;
+      border-radius: 2rem;
+      padding: 2rem;
+      border: 1px solid #ddebd9;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.4rem;
+      font-weight: 500;
+      color: #1f6642;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 0.8rem 1.2rem;
+      border: 1px solid #bcd5b6;
+      border-radius: 40px;
+      font-size: 1rem;
+      background: white;
+      transition: 0.15s;
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: #288f51;
+      box-shadow: 0 0 0 3px rgba(40, 143, 81, 0.1);
+    }
+
+    textarea.form-control {
+      border-radius: 30px;
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .submit-btn {
+      background: #2a7853;
+      border: none;
+      color: white;
+      font-size: 1.3rem;
+      font-weight: 430;
+      padding: 0.8rem 2.5rem;
+      border-radius: 60px;
+      cursor: pointer;
+      transition: background 0.2s;
+      box-shadow: 0 10px 18px -8px #246e47;
+      border: 1px solid #288f51;
+      width: 100%;
+    }
+
+    .submit-btn:hover {
+      background: #1e6040;
+    }
+
+    .map-placeholder {
+      background: #deecdd;
+      border-radius: 2rem;
+      padding: 3rem 2rem;
+      text-align: center;
+      margin: 2rem 0 1rem;
+      border: 1px solid #cde0d2;
+      color: #1d5e3a;
+      font-size: 1.3rem;
+    }
+
+    /* footer */
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2.2rem;
+      margin-top: 3rem;
+      padding: 2rem 0 1rem;
+      border-top: 1px solid #d1dfcd;
+      font-size: 1rem;
+    }
+
+    .footer-links a {
+      text-decoration: none;
+      color: #2d7553;
+      font-weight: 460;
+    }
+
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
+
+    .cookie-note {
+      margin: 1.8rem auto 0.5rem;
+      font-size: 0.82rem;
+      color: #5f9178;
+      text-align: center;
+      max-width: 700px;
+      background: #f1f9ef;
+      padding: 0.8rem 1.8rem;
+      border-radius: 60px;
+    }
+
+    .cookie-note a {
+      color: #1f7a4b;
+    }
+
+    hr {
+      border: none;
+      border-top: 2px solid #dae5d3;
+      margin: 1rem 0;
+    }
+
+    .disclaimer {
+      text-align: center;
+      font-size: 0.75rem;
+      color: #86af93;
+      margin-top: 0.5rem;
+    }
+
+    @media (max-width: 700px) {
+      .contact-grid { grid-template-columns: 1fr; }
+      .container { padding: 1.8rem 1rem; }
+      .hero h1 { font-size: 2.5rem; }
+      .hero .subhead { font-size: 1.5rem; }
+      .top-bar { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <!-- top bar with logo and translator -->
+  <div class="top-bar">
+    <div class="logo" data-i18n="logo">A G H</div>
+    <div class="translator-control">
+      <label for="lang-select" data-i18n="translate_label">🌾 Language</label>
+      <select id="lang-select">
+        <option value="en" selected>English</option>
+        <option value="es">Español</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- hero -->
+  <div class="hero">
+    <h1 data-i18n="contact_headline">We'd love to hear from you.</h1>
+    <div class="subhead" data-i18n="contact_subhead">Contact Acreage of Global Homestead</div>
+  </div>
+
+  <!-- contact grid: info + form -->
+  <div class="contact-grid">
+    <!-- left: contact info -->
+    <div class="contact-info">
+      <div class="info-item">
+        <span class="info-icon">📍</span>
+        <div class="info-text" data-i18n="contact_address"><strong>Headquarters</strong><br>123 Farm Road, Delta Region, Nigeria</div>
+      </div>
+      <div class="info-item">
+        <span class="info-icon">📧</span>
+        <div class="info-text" data-i18n="contact_email"><strong>Email</strong><br>hello@acreage.global</div>
+      </div>
+      <div class="info-item">
+        <span class="info-icon">📞</span>
+        <div class="info-text" data-i18n="contact_phone"><strong>Phone</strong><br>+234 800 123 4567</div>
+      </div>
+      <div class="info-item">
+        <span class="info-icon">🌾</span>
+        <div class="info-text" data-i18n="contact_social"><strong>Social</strong><br>@acreagehomestead</div>
+      </div>
+    </div>
+
+    <!-- right: contact form -->
+    <div class="contact-form">
+      <form action="#" method="post">
+        <div class="form-group">
+          <label for="name" data-i18n="form_name">Your name</label>
+          <input type="text" id="name" name="name" class="form-control" placeholder="e.g. Ada Obi" data-i18n-placeholder="form_name_placeholder">
+        </div>
+        <div class="form-group">
+          <label for="email" data-i18n="form_email">Email address</label>
+          <input type="email" id="email" name="email" class="form-control" placeholder="ada@farmer.org" data-i18n-placeholder="form_email_placeholder">
+        </div>
+        <div class="form-group">
+          <label for="message" data-i18n="form_message">Message</label>
+          <textarea id="message" name="message" class="form-control" placeholder="How can we help?" data-i18n-placeholder="form_message_placeholder"></textarea>
+        </div>
+        <button type="submit" class="submit-btn" data-i18n="form_send">Send message</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- simple map / office location placeholder -->
+  <div class="map-placeholder" data-i18n="map_text">
+    🌍 Our global headquarters — visit us or find a local partner.
+  </div>
+
+  <!-- footer (unchanged from about_us) -->
+  <div class="footer-links">
+    <a href="about_us.html" data-i18n="company">About us</a>
+    <a href="Farm_resource.html" data-i18n="products">Farming resources</a>
+    <a href="cooperative.html" data-i18n="business">For cooperatives</a>
+    <a href="Help_&_Support.html" data-i18n="help">Help & support</a>
+    <a href="#" data-i18n="cookie_pref">Cookie preferences</a>
+  </div>
+  <div class="cookie-note" data-i18n="cookie_notice">
+    AGH and its partners use cookies to improve your experience. By using our site, you agree to our Privacy Policy.
+  </div>
+  <hr>
+  <div class="disclaimer" data-i18n="disclaimer">contact page · Acreage of Global Homestead</div>
+</div>
+
+<!-- translation engine (EN / ES) with contact‑specific keys -->
+<script>
+  (function() {
+    const translations = {
+      en: {
+        logo: "A G H",
+        translate_label: "🌾 Language",
+        contact_headline: "We'd love to hear from you.",
+        contact_subhead: "Contact Acreage of Global Homestead",
+        contact_address: "<strong>Headquarters</strong><br>123 Farm Road, Delta Region, Nigeria",
+        contact_email: "<strong>Email</strong><br>hello@acreage.global",
+        contact_phone: "<strong>Phone</strong><br>+234 800 123 4567",
+        contact_social: "<strong>Social</strong><br>@acreagehomestead",
+        form_name: "Your name",
+        form_name_placeholder: "e.g. Ada Obi",
+        form_email: "Email address",
+        form_email_placeholder: "ada@farmer.org",
+        form_message: "Message",
+        form_message_placeholder: "How can we help?",
+        form_send: "Send message",
+        map_text: "🌍 Our global headquarters — visit us or find a local partner.",
+        company: "About us",
+        products: "Farming resources",
+        business: "For cooperatives",
+        help: "Help & support",
+        cookie_pref: "Cookie preferences",
+        cookie_notice: "AGH and its partners use cookies to improve your experience. By using our site, you agree to our Privacy Policy.",
+        disclaimer: "contact page · Acreage of Global Homestead"
+      },
+      es: {
+        logo: "A G H",
+        translate_label: "🌾 Idioma",
+        contact_headline: "Nos encantaría saber de ti.",
+        contact_subhead: "Contacta a Acreage of Global Homestead",
+        contact_address: "<strong>Oficina central</strong><br>123 Farm Road, Delta Region, Nigeria",
+        contact_email: "<strong>Correo</strong><br>hello@acreage.global",
+        contact_phone: "<strong>Teléfono</strong><br>+234 800 123 4567",
+        contact_social: "<strong>Redes</strong><br>@acreagehomestead",
+        form_name: "Tu nombre",
+        form_name_placeholder: "p.ej. Ada Obi",
+        form_email: "Correo electrónico",
+        form_email_placeholder: "ada@farmer.org",
+        form_message: "Mensaje",
+        form_message_placeholder: "¿Cómo podemos ayudarte?",
+        form_send: "Enviar mensaje",
+        map_text: "🌍 Nuestra sede global — visítanos o encuentra un socio local.",
+        company: "Sobre nosotros",
+        products: "Recursos agrícolas",
+        business: "Para cooperativas",
+        help: "Ayuda y soporte",
+        cookie_pref: "Preferencias de cookies",
+        cookie_notice: "AGH y sus socios utilizan cookies para mejorar tu experiencia. Al usar nuestro sitio, aceptas nuestra Política de Privacidad.",
+        disclaimer: "página de contacto · Acreage of Global Homestead"
+      }
+    };
+
+    const langSelect = document.getElementById('lang-select');
+
+    function applyLanguage(lang) {
+      const elements = document.querySelectorAll('[data-i18n]');
+      elements.forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang] && translations[lang][key]) {
+          // For innerHTML (some keys contain <br>), use innerHTML; for others textContent?
+          // We'll use innerHTML to allow simple markup.
+          el.innerHTML = translations[lang][key];
+        }
+      });
+      // Also handle placeholders
+      const placeholders = document.querySelectorAll('[data-i18n-placeholder]');
+      placeholders.forEach(el => {
+        const key = el.getAttribute('data-i18n-placeholder');
+        if (translations[lang] && translations[lang][key]) {
+          el.placeholder = translations[lang][key];
+        }
+      });
+    }
+
+    langSelect.addEventListener('change', (e) => {
+      applyLanguage(e.target.value);
+    });
+
+    applyLanguage('en');
+  })();
+</script>
+</body>
+</html>

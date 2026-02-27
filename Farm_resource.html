@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Farm Resources · AGH</title>
+  <style>
+    /* ----- same style as default (about us template) ----- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #f0f2e9;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      color: #1d3a2b;
+      line-height: 1.5;
+      padding: 1.5rem 1rem;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      background-color: #ffffff;
+      border-radius: 2.5rem;
+      box-shadow: 0 25px 45px -20px #2f4b3c;
+      overflow: hidden;
+      padding: 2.5rem 2rem;
+    }
+
+    /* top bar */
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .logo {
+      display: inline-flex;           /* Align icon and text */
+      align-items: center;            /* Vertically center */
+      gap: 0.75rem;                   /* Space between icon and text */
+      font-size: 1.8rem;
+      font-weight: 350;               /* Light weight – works best with a font that supports it */
+      font-family: 'Segoe UI', 'Helvetica Neue', sans-serif; /* Clean, modern fallback */
+      letter-spacing: -0.02em;
+      color: #2b6b4a;
+      border: 2px solid #c2d9c0;
+      border-radius: 60px;
+      padding: 0.2rem 1.5rem 0.2rem 1.2rem;  /* Slightly less left padding to balance icon */
+      background: #fafff8;
+      box-shadow: 0 4px 8px rgba(0, 40, 20, 0.06); /* Subtle depth */
+      transition: all 0.2s ease;      /* Smooth hover effect */
+      text-decoration: none;           /* If used as a link */
+    }
+
+    /* Hover effect for a little interactivity */
+    .logo:hover {
+      border-color: #9bbf9a;
+      background: #b1eba9;
+      box-shadow: 0 6px 12px rgba(43, 107, 74, 0.1);
+    }
+
+    /* The leaf icon – built with pure CSS */
+    .logo::before {
+      content: "";
+      display: inline-block;
+      width: 1.6rem;
+      height: 1.6rem;
+      background: #0a0ae5;              /* Match text color */
+      mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black"><path d="M12,2C9,7,4,9,4,14c0,4,4,6,8,6s8-2,8-6C20,9,15,7,12,2z M12,18c-2.5,0-6-1-6-4c0-2.5,2-5,5-8c3,3,5,5.5,5,8 C16,17,14.5,18,12,18z"/></svg>') no-repeat center;
+      mask-size: contain;
+      -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black"><path d="M12,2C9,7,4,9,4,14c0,4,4,6,8,6s8-2,8-6C20,9,15,7,12,2z M12,18c-2.5,0-6-1-6-4c0-2.5,2-5,5-8c3,3,5,5.5,5,8 C16,17,14.5,18,12,18z"/></svg>') no-repeat center;
+      -webkit-mask-size: contain;
+      background-color: #c6f539;        /* Fallback */
+    }
+
+
+    .translator-control {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: #e6f0e5;
+      padding: 0.4rem 1rem 0.4rem 1.5rem;
+      border-radius: 60px;
+      border: 1px solid #bcd5b6;
+    }
+
+    .translator-control label {
+      font-size: 0.9rem;
+      font-weight: 450;
+      color: #2a6e4d;
+    }
+
+    #lang-select {
+      background: white;
+      border: 1px solid #aacfaf;
+      border-radius: 30px;
+      padding: 0.4rem 1.2rem;
+      font-size: 1rem;
+      color: #1f6242;
+      font-weight: 450;
+      cursor: pointer;
+      outline: none;
+    }
+
+    /* hero */
+    .hero {
+      text-align: center;
+      max-width: 800px;
+      margin: 1rem auto 2rem;
+    }
+
+    .hero h1 {
+      font-size: 3.2rem;
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      color: #1d5235;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero .subhead {
+      font-size: 1.8rem;
+      font-weight: 320;
+      color: #3b7556;
+      margin-bottom: 1rem;
+    }
+
+    .hero .tagline {
+      font-size: 1.3rem;
+      font-weight: 290;
+      color: #528b6b;
+      border-bottom: 1px solid #dae5d3;
+      padding-bottom: 1.2rem;
+      margin-bottom: 1rem;
+    }
+
+    /* resource grid – using same card style as testimonials */
+    .resource-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2rem 1.5rem;
+      margin: 3rem 0;
+    }
+
+    .resource-card {
+      background: #f9fcf7;
+      border-radius: 1.8rem;
+      padding: 1.8rem 1.6rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+      border: 1px solid #ddebd9;
+      transition: all 0.15s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .resource-card:hover {
+      box-shadow: 0 18px 28px -16px #417a5b;
+      border-color: #b6d7b6;
+    }
+
+    .resource-icon {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .resource-title {
+      font-size: 1.6rem;
+      font-weight: 480;
+      color: #1f6642;
+      margin-bottom: 0.5rem;
+      line-height: 1.2;
+    }
+
+    .resource-desc {
+      color: #2a5c40;
+      font-weight: 360;
+      margin-bottom: 1.2rem;
+      flex: 1;
+    }
+
+    .resource-link {
+      text-decoration: none;
+      color: #1f7a4b;
+      font-weight: 520;
+      font-size: 1rem;
+      border-top: 1px dashed #bcd5b6;
+      padding-top: 0.8rem;
+      margin-top: auto;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .resource-link:hover {
+      color: #145c37;
+      text-decoration: underline;
+    }
+
+    /* CTA block */
+    .cta-block {
+      background: #deecdd;
+      border-radius: 2.5rem;
+      padding: 2.8rem 2rem;
+      text-align: center;
+      margin: 3rem 0 2rem;
+    }
+
+    .cta-block h3 {
+      font-size: 2.2rem;
+      font-weight: 380;
+      color: #1c5f3c;
+      margin-bottom: 0.8rem;
+    }
+
+    .price-detail {
+      font-size: 1.3rem;
+      background: white;
+      display: inline-block;
+      padding: 0.5rem 2.2rem;
+      border-radius: 40px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+      margin: 1rem 0 0.5rem;
+      color: #2a784d;
+      border: 1px solid #c0dfc0;
+    }
+
+    .cta-button {
+      background: #2a7853;
+      border: none;
+      color: white;
+      font-size: 1.4rem;
+      font-weight: 430;
+      padding: 0.9rem 3rem;
+      border-radius: 60px;
+      cursor: pointer;
+      transition: background 0.2s;
+      box-shadow: 0 10px 18px -8px #246e47;
+      border: 1px solid #288f51;
+      margin: 1.2rem 0 0.5rem;
+    }
+
+    .cta-button:hover {
+      background: #1e6040;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2.2rem;
+      margin-top: 3rem;
+      padding: 2rem 0 1rem;
+      border-top: 1px solid #d1dfcd;
+      font-size: 1rem;
+    }
+
+    .footer-links a {
+      text-decoration: none;
+      color: #2d7553;
+      font-weight: 460;
+    }
+
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
+
+    .cookie-note {
+      margin: 1.8rem auto 0.5rem;
+      font-size: 0.82rem;
+      color: #5f9178;
+      text-align: center;
+      max-width: 700px;
+      background: #f1f9ef;
+      padding: 0.8rem 1.8rem;
+      border-radius: 60px;
+    }
+
+    .cookie-note a {
+      color: #1f7a4b;
+    }
+
+    hr {
+      border: none;
+      border-top: 2px solid #dae5d3;
+      margin: 1rem 0;
+    }
+
+    .disclaimer {
+      text-align: center;
+      font-size: 0.75rem;
+      color: #86af93;
+      margin-top: 0.5rem;
+    }
+
+    @media (max-width: 600px) {
+      .container { padding: 1.8rem 1rem; }
+      .hero h1 { font-size: 2.5rem; }
+      .hero .subhead { font-size: 1.5rem; }
+      .top-bar { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <!-- top bar with logo and translator -->
+  <div class="top-bar">
+    <div class="logo" data-i18n="logo">A G H</div>
+    <div class="translator-control">
+      <label for="lang-select" data-i18n="translate_label">🌾 Language</label>
+      <select id="lang-select">
+        <option value="en" selected>English</option>
+        <option value="es">Español</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- hero for resource page -->
+  <div class="hero">
+    <h1 data-i18n="resource_headline">Farmer's Knowledge Hub</h1>
+    <div class="subhead" data-i18n="resource_subhead">Free tools, guides & real-time data</div>
+    <div class="tagline" data-i18n="resource_tagline">Grow smarter with resources tailored for your land.</div>
+  </div>
+
+  <!-- resource grid (9 cards, like testimonials but for resources) -->
+  <div class="resource-grid">
+    <!-- 1. soil health -->
+    <div class="resource-card">
+      <div class="resource-icon">🌱</div>
+      <div class="resource-title" data-i18n="res1_title">Soil Health Scanner</div>
+      <div class="resource-desc" data-i18n="res1_desc">Check NPK, pH, and moisture with our mobile tool – free for smallholders.</div>
+      <a href="#" class="resource-link" data-i18n="res1_link">Learn more →</a>
+    </div>
+    <!-- 2. weather -->
+    <div class="resource-card">
+      <div class="resource-icon">⛅</div>
+      <div class="resource-title" data-i18n="res2_title">Hyperlocal Weather</div>
+      <div class="resource-desc" data-i18n="res2_desc">10‑day forecast and planting alerts based on your GPS location.</div>
+      <a href="#" class="resource-link" data-i18n="res2_link">Check forecast →</a>
+    </div>
+    <!-- 3. market prices -->
+    <div class="resource-card">
+      <div class="resource-icon">📈</div>
+      <div class="resource-title" data-i18n="res3_title">Market Price Board</div>
+      <div class="resource-desc" data-i18n="res3_desc">Real‑time prices for maize, cassava, palm oil, and more in your region.</div>
+      <a href="#" class="resource-link" data-i18n="res3_link">View prices →</a>
+    </div>
+    <!-- 4. crop calendar -->
+    <div class="resource-card">
+      <div class="resource-icon">📅</div>
+      <div class="resource-title" data-i18n="res4_title">Crop Planting Calendar</div>
+      <div class="resource-desc" data-i18n="res4_desc">When to plant, fertilize, and harvest for 50+ crops in your climate.</div>
+      <a href="#" class="resource-link" data-i18n="res4_link">Download PDF →</a>
+    </div>
+    <!-- 5. pest guide -->
+    <div class="resource-card">
+      <div class="resource-icon">🐛</div>
+      <div class="resource-title" data-i18n="res5_title">Pest & Disease ID</div>
+      <div class="resource-desc" data-i18n="res5_desc">Photo recognition and organic treatment recommendations.</div>
+      <a href="#" class="resource-link" data-i18n="res5_link">Identify now →</a>
+    </div>
+    <!-- 6. irrigation calculator -->
+    <div class="resource-card">
+      <div class="resource-icon">💧</div>
+      <div class="resource-title" data-i18n="res6_title">Irrigation Planner</div>
+      <div class="resource-desc" data-i18n="res6_desc">Calculate water needs based on soil type, crop, and rainfall.</div>
+      <a href="#" class="resource-link" data-i18n="res6_link">Start planning →</a>
+    </div>
+    <!-- 7. financial tools -->
+    <div class="resource-card">
+      <div class="resource-icon">💰</div>
+      <div class="resource-title" data-i18n="res7_title">Loan & Grant Finder</div>
+      <div class="resource-desc" data-i18n="res7_desc">Match with agricultural loans, subsidies, and microgrants.</div>
+      <a href="#" class="resource-link" data-i18n="res7_link">Check eligibility →</a>
+    </div>
+    <!-- 8. equipment sharing -->
+    <div class="resource-card">
+      <div class="resource-icon">🚜</div>
+      <div class="resource-title" data-i18n="res8_title">Equipment Co-op</div>
+      <div class="resource-desc" data-i18n="res8_desc">Rent or share tractors, harvesters, and tools with neighbours.</div>
+      <a href="#" class="resource-link" data-i18n="res8_link">Browse listings →</a>
+    </div>
+    <!-- 9. meditation (farmers' well‑being) -->
+    <div class="resource-card">
+      <div class="resource-icon">🧘</div>
+      <div class="resource-title" data-i18n="res9_title">Farmer Resilience</div>
+      <div class="resource-desc" data-i18n="res9_desc">Guided audio sessions to reduce stress and improve sleep.</div>
+      <a href="#" class="resource-link" data-i18n="res9_link">Listen free →</a>
+    </div>
+  </div>
+
+  <!-- CTA: resource newsletter -->
+  <div class="cta-block">
+    <h3 data-i18n="cta_resource_title">Get weekly farm guides</h3>
+    <div class="price-detail" data-i18n="cta_resource_text">Free newsletter with seasonal tips, market updates, and new tools.</div>
+    <div class="terms-links" style="margin: 0.5rem 0;">
+      <a href="#" data-i18n="cta_resource_sample">View sample</a> | <span data-i18n="cta_resource_privacy">No spam, unsubscribe anytime</span>
+    </div>
+    <button class="cta-button" data-i18n="cta_resource_button">Subscribe now</button>
+  </div>
+
+  <!-- footer (same as default) -->
+  <div class="footer-links">
+    <a href="about_us.html" data-i18n="company">About us</a>
+    <a href="Farm_resource.html" data-i18n="products">Farming resources</a>
+    <a href="cooperative.html" data-i18n="business">For cooperatives</a>
+    <a href="Help_&_Support.html" data-i18n="help">Help & support</a>
+    <a href="#" data-i18n="cookie_pref">Cookie preferences</a>
+  </div>
+  <div class="cookie-note" data-i18n="cookie_notice">
+    AGH and its partners use cookies to improve your experience. By using our site, you agree to our Privacy Policy.
+  </div>
+  <hr>
+  <div class="disclaimer" data-i18n="disclaimer">farm resource page · Acreage of Global Homestead</div>
+</div>
+
+<!-- translation engine (EN / ES) with all resource keys -->
+<script>
+  (function() {
+    const translations = {
+      en: {
+        logo: "A G H",
+        translate_label: "🌾 Language",
+        resource_headline: "Farmer's Knowledge Hub",
+        resource_subhead: "Free tools, guides & real-time data",
+        resource_tagline: "Grow smarter with resources tailored for your land.",
+        // resource cards
+        res1_title: "Soil Health Scanner",
+        res1_desc: "Check NPK, pH, and moisture with our mobile tool – free for smallholders.",
+        res1_link: "Learn more →",
+        res2_title: "Hyperlocal Weather",
+        res2_desc: "10‑day forecast and planting alerts based on your GPS location.",
+        res2_link: "Check forecast →",
+        res3_title: "Market Price Board",
+        res3_desc: "Real‑time prices for maize, cassava, palm oil, and more in your region.",
+        res3_link: "View prices →",
+        res4_title: "Crop Planting Calendar",
+        res4_desc: "When to plant, fertilize, and harvest for 50+ crops in your climate.",
+        res4_link: "Download PDF →",
+        res5_title: "Pest & Disease ID",
+        res5_desc: "Photo recognition and organic treatment recommendations.",
+        res5_link: "Identify now →",
+        res6_title: "Irrigation Planner",
+        res6_desc: "Calculate water needs based on soil type, crop, and rainfall.",
+        res6_link: "Start planning →",
+        res7_title: "Loan & Grant Finder",
+        res7_desc: "Match with agricultural loans, subsidies, and microgrants.",
+        res7_link: "Check eligibility →",
+        res8_title: "Equipment Co-op",
+        res8_desc: "Rent or share tractors, harvesters, and tools with neighbours.",
+        res8_link: "Browse listings →",
+        res9_title: "Farmer Resilience",
+        res9_desc: "Guided audio sessions to reduce stress and improve sleep.",
+        res9_link: "Listen free →",
+        // CTA
+        cta_resource_title: "Get weekly farm guides",
+        cta_resource_text: "Free newsletter with seasonal tips, market updates, and new tools.",
+        cta_resource_sample: "View sample",
+        cta_resource_privacy: "No spam, unsubscribe anytime",
+        cta_resource_button: "Subscribe now",
+        // footer
+        company: "About us",
+        products: "Farming resources",
+        business: "For cooperatives",
+        help: "Help & support",
+        cookie_pref: "Cookie preferences",
+        cookie_notice: "AGH and its partners use cookies to improve your experience. By using our site, you agree to our Privacy Policy.",
+        disclaimer: "farm resource page · Acreage of Global Homestead"
+      },
+      es: {
+        logo: "A G H",
+        translate_label: "🌾 Idioma",
+        resource_headline: "Centro de conocimiento del agricultor",
+        resource_subhead: "Herramientas gratuitas, guías y datos en tiempo real",
+        resource_tagline: "Cultiva de forma más inteligente con recursos adaptados a tu tierra.",
+        res1_title: "Escáner de salud del suelo",
+        res1_desc: "Mide NPK, pH y humedad con nuestra herramienta móvil – gratuita para pequeños agricultores.",
+        res1_link: "Más información →",
+        res2_title: "Clima hiperlocal",
+        res2_desc: "Pronóstico de 10 días y alertas de siembra según tu ubicación GPS.",
+        res2_link: "Ver pronóstico →",
+        res3_title: "Tabla de precios de mercado",
+        res3_desc: "Precios en tiempo real para maíz, yuca, aceite de palma y más en tu región.",
+        res3_link: "Ver precios →",
+        res4_title: "Calendario de siembra",
+        res4_desc: "Cuándo plantar, fertilizar y cosechar para más de 50 cultivos en tu clima.",
+        res4_link: "Descargar PDF →",
+        res5_title: "Identificador de plagas",
+        res5_desc: "Reconocimiento por foto y recomendaciones de tratamientos orgánicos.",
+        res5_link: "Identificar ahora →",
+        res6_title: "Planificador de riego",
+        res6_desc: "Calcula necesidades de agua según tipo de suelo, cultivo y lluvia.",
+        res6_link: "Comenzar →",
+        res7_title: "Buscador de préstamos y subvenciones",
+        res7_desc: "Encuentra créditos agrícolas, subsidios y microdonaciones.",
+        res7_link: "Ver elegibilidad →",
+        res8_title: "Cooperativa de equipos",
+        res8_desc: "Alquila o comparte tractores, cosechadoras y herramientas con vecinos.",
+        res8_link: "Explorar listados →",
+        res9_title: "Resiliencia del agricultor",
+        res9_desc: "Sesiones de audio guiadas para reducir el estrés y mejorar el sueño.",
+        res9_link: "Escuchar gratis →",
+        cta_resource_title: "Recibe guías agrícolas semanales",
+        cta_resource_text: "Newsletter gratuito con consejos estacionales, actualizaciones de mercado y nuevas herramientas.",
+        cta_resource_sample: "Ver ejemplo",
+        cta_resource_privacy: "Sin spam, cancela cuando quieras",
+        cta_resource_button: "Suscribirme ahora",
+        company: "Sobre nosotros",
+        products: "Recursos agrícolas",
+        business: "Para cooperativas",
+        help: "Ayuda y soporte",
+        cookie_pref: "Preferencias de cookies",
+        cookie_notice: "AGH y sus socios utilizan cookies para mejorar tu experiencia. Al usar nuestro sitio, aceptas nuestra Política de Privacidad.",
+        disclaimer: "página de recursos agrícolas · Acreage of Global Homestead"
+      }
+    };
+
+    const langSelect = document.getElementById('lang-select');
+
+    function applyLanguage(lang) {
+      const elements = document.querySelectorAll('[data-i18n]');
+      elements.forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang] && translations[lang][key]) {
+          el.innerText = translations[lang][key];
+        }
+      });
+    }
+
+    langSelect.addEventListener('change', (e) => {
+      applyLanguage(e.target.value);
+    });
+
+    applyLanguage('en');
+  })();
+</script>
+</body>
+</html>

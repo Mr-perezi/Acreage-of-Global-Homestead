@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>For Cooperatives · AGH</title>
+  <style>
+    /* ----- same style as default (resource/about pages) ----- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #f0f2e9;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      color: #1d3a2b;
+      line-height: 1.5;
+      padding: 1.5rem 1rem;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      background-color: #ffffff;
+      border-radius: 2.5rem;
+      box-shadow: 0 25px 45px -20px #2f4b3c;
+      overflow: hidden;
+      padding: 2.5rem 2rem;
+    }
+
+    /* top bar */
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem 2rem;
+      margin-bottom: 2rem;
+    }
+
+    
+    .logo {
+      display: inline-flex;           /* Align icon and text */
+      align-items: center;            /* Vertically center */
+      gap: 0.75rem;                   /* Space between icon and text */
+      font-size: 1.8rem;
+      font-weight: 450s;               /* Light weight – works best with a font that supports it */
+      font-family: 'Segoe UI', 'Helvetica Neue', sans-serif; /* Clean, modern fallback */
+      letter-spacing: -0.02em;
+      color: #d8e06d;
+      border: 2px solid #c2d9c0;
+      border-radius: 70px;
+      padding: 0.2rem 1.5rem 0.2rem 1.2rem;  /* Slightly less left padding to balance icon */
+      background: #dfeafd;
+      box-shadow: 0 4px 8px rgba(86, 150, 170, 0.06); /* Subtle depth */
+      transition: all 0.2s ease;      /* Smooth hover effect */
+      text-decoration-thickness: var();           /* If used as a link */
+    }
+
+    /* Hover effect for a little interactivity */
+    .logo:hover {
+      border-color: #eed2e6;
+      background: #8fb19e;
+      box-shadow: 0 6px 12px rgba(43, 107, 74, 0.1);
+    }
+
+    /* The leaf icon – built with pure CSS */
+    .logo::before {
+      content: "";
+      display: inline-block;
+      width: 1.8rem;
+      height: 1.6rem;
+      background: #62d79b;              /* Match text color */
+      mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black"><path d="M12,2C9,7,4,9,4,14c0,4,4,6,8,6s8-2,8-6C20,9,15,7,12,2z M12,18c-2.5,0-6-1-6-4c0-2.5,2-5,5-8c3,3,5,5.5,5,8 C16,17,14.5,18,12,18z"/></svg>') no-repeat center;
+      mask-size: contain;
+      -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black"><path d="M12,2C9,7,4,9,4,14c0,4,4,6,8,6s8-2,8-6C20,9,15,7,12,2z M12,18c-2.5,0-6-1-6-4c0-2.5,2-5,5-8c3,3,5,5.5,5,8 C16,17,14.5,18,12,18z"/></svg>') no-repeat center;
+      -webkit-mask-size: contain;
+      background-color: #99e151;        /* Fallback */
+    }
+
+
+
+    .translator-control {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: #e6f0e5;
+      padding: 0.4rem 1rem 0.4rem 1.5rem;
+      border-radius: 60px;
+      border: 1px solid #bcd5b6;
+    }
+
+    .translator-control label {
+      font-size: 0.9rem;
+      font-weight: 450;
+      color: #2a6e4d;
+    }
+
+    #lang-select {
+      background: white;
+      border: 1px solid #aacfaf;
+      border-radius: 30px;
+      padding: 0.4rem 1.2rem;
+      font-size: 1rem;
+      color: #1f6242;
+      font-weight: 450;
+      cursor: pointer;
+      outline: none;
+    }
+
+    /* hero */
+    .hero {
+      text-align: center;
+      max-width: 800px;
+      margin: 1rem auto 2rem;
+    }
+
+    .hero h1 {
+      font-size: 3.2rem;
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      color: #1d5235;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero .subhead {
+      font-size: 1.8rem;
+      font-weight: 320;
+      color: #3b7556;
+      margin-bottom: 1rem;
+    }
+
+    .hero .tagline {
+      font-size: 1.3rem;
+      font-weight: 290;
+      color: #528b6b;
+      border-bottom: 1px solid #dae5d3;
+      padding-bottom: 1.2rem;
+      margin-bottom: 1rem;
+    }
+
+    /* cooperative feature grid – using same card style */
+    .coop-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2rem 1.5rem;
+      margin: 3rem 0;
+    }
+
+    .coop-card {
+      background: #f9fcf7;
+      border-radius: 1.8rem;
+      padding: 1.8rem 1.6rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+      border: 1px solid #ddebd9;
+      transition: all 0.15s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .coop-card:hover {
+      box-shadow: 0 18px 28px -16px #417a5b;
+      border-color: #b6d7b6;
+    }
+
+    .coop-icon {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .coop-title {
+      font-size: 1.6rem;
+      font-weight: 480;
+      color: #1f6642;
+      margin-bottom: 0.5rem;
+      line-height: 1.2;
+    }
+
+    .coop-desc {
+      color: #2a5c40;
+      font-weight: 360;
+      margin-bottom: 1.2rem;
+      flex: 1;
+    }
+
+    .coop-link {
+      text-decoration: none;
+      color: #1f7a4b;
+      font-weight: 520;
+      font-size: 1rem;
+      border-top: 1px dashed #bcd5b6;
+      padding-top: 0.8rem;
+      margin-top: auto;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .coop-link:hover {
+      color: #145c37;
+      text-decoration: underline;
+    }
+
+    /* testimonial/quote card (special for coop leader) */
+    .testimonial-card {
+      background: #f9fcf7;
+      border-radius: 1.8rem;
+      padding: 1.8rem 1.6rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+      border: 1px solid #ddebd9;
+      transition: all 0.15s;
+      margin: 2rem 0;
+    }
+
+    .testimonial-card:hover {
+      box-shadow: 0 18px 28px -16px #417a5b;
+      border-color: #b6d7b6;
+    }
+
+    .testimonial-text {
+      font-size: 1.2rem;
+      color: #1a4b31;
+      margin-bottom: 1rem;
+      quotes: "“" "”" "‘" "’";
+      font-weight: 370;
+      line-height: 1.5;
+    }
+
+    .testimonial-text::before {
+      content: "“";
+      font-size: 2rem;
+      color: #8db892;
+      margin-right: 3px;
+      vertical-align: middle;
+    }
+
+    .testimonial-text::after {
+      content: "”";
+      font-size: 2rem;
+      color: #8db892;
+      margin-left: 3px;
+      vertical-align: bottom;
+    }
+
+    .author-name {
+      font-weight: 620;
+      color: #1f6642;
+      font-size: 1.1rem;
+    }
+
+    .author-location {
+      font-size: 0.95rem;
+      color: #679e7a;
+    }
+
+    /* CTA block */
+    .cta-block {
+      background: #deecdd;
+      border-radius: 2.5rem;
+      padding: 2.8rem 2rem;
+      text-align: center;
+      margin: 3rem 0 2rem;
+    }
+
+    .cta-block h3 {
+      font-size: 2.2rem;
+      font-weight: 380;
+      color: #1c5f3c;
+      margin-bottom: 0.8rem;
+    }
+
+    .price-detail {
+      font-size: 1.3rem;
+      background: white;
+      display: inline-block;
+      padding: 0.5rem 2.2rem;
+      border-radius: 40px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+      margin: 1rem 0 0.5rem;
+      color: #2a784d;
+      border: 1px solid #c0dfc0;
+    }
+
+    .cta-button {
+      background: #2a7853;
+      border: none;
+      color: white;
+      font-size: 1.4rem;
+      font-weight: 430;
+      padding: 0.9rem 3rem;
+      border-radius: 60px;
+      cursor: pointer;
+      transition: background 0.2s;
+      box-shadow: 0 10px 18px -8px #246e47;
+      border: 1px solid #288f51;
+      margin: 1.2rem 0 0.5rem;
+    }
+
+    .cta-button:hover {
+      background: #1e6040;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2.2rem;
+      margin-top: 3rem;
+      padding: 2rem 0 1rem;
+      border-top: 1px solid #d1dfcd;
+      font-size: 1rem;
+    }
+
+    .footer-links a {
+      text-decoration: none;
+      color: #2d7553;
+      font-weight: 460;
+    }
+
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
+
+    .cookie-note {
+      margin: 1.8rem auto 0.5rem;
+      font-size: 0.82rem;
+      color: #5f9178;
+      text-align: center;
+      max-width: 700px;
+      background: #f1f9ef;
+      padding: 0.8rem 1.8rem;
+      border-radius: 60px;
+    }
+
+    .cookie-note a {
+      color: #1f7a4b;
+    }
+
+    hr {
+      border: none;
+      border-top: 2px solid #dae5d3;
+      margin: 1rem 0;
+    }
+
+    .disclaimer {
+      text-align: center;
+      font-size: 0.75rem;
+      color: #86af93;
+      margin-top: 0.5rem;
+    }
+
+    @media (max-width: 600px) {
+      .container { padding: 1.8rem 1rem; }
+      .hero h1 { font-size: 2.5rem; }
+      .hero .subhead { font-size: 1.5rem; }
+      .top-bar { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <!-- top bar with logo and translator -->
+  <div class="top-bar">
+    <div class="logo" data-i18n="logo">A G H</div>
+    <div class="translator-control">
+      <label for="lang-select" data-i18n="translate_label">🌾 Language</label>
+      <select id="lang-select">
+        <option value="en" selected>English</option>
+        <option value="es">Español</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- hero for cooperatives page -->
+  <div class="hero">
+    <h1 data-i18n="coop_headline">Empower your cooperative</h1>
+    <div class="subhead" data-i18n="coop_subhead">Shared tools, collective growth</div>
+    <div class="tagline" data-i18n="coop_tagline">We help farming cooperatives manage resources, data, and well‑being together.</div>
+  </div>
+
+  <!-- cooperative features grid (6 cards) -->
+  <div class="coop-grid">
+    <!-- 1. group dashboard -->
+    <div class="coop-card">
+      <div class="coop-icon">📊</div>
+      <div class="coop-title" data-i18n="coop1_title">Group Dashboard</div>
+      <div class="coop-desc" data-i18n="coop1_desc">Real‑time overview of all member farms: crop health, weather, and task status.</div>
+      <a href="#" class="coop-link" data-i18n="coop1_link">Explore demo →</a>
+    </div>
+    <!-- 2. collective purchasing -->
+    <div class="coop-card">
+      <div class="coop-icon">🤝</div>
+      <div class="coop-title" data-i18n="coop2_title">Bulk Input Orders</div>
+      <div class="coop-desc" data-i18n="coop2_desc">Aggregate seed, fertiliser, and equipment orders to negotiate better prices.</div>
+      <a href="#" class="coop-link" data-i18n="coop2_link">See how it works →</a>
+    </div>
+    <!-- 3. shared harvest planner -->
+    <div class="coop-card">
+      <div class="coop-icon">🚜</div>
+      <div class="coop-title" data-i18n="coop3_title">Cooperative Harvest Scheduler</div>
+      <div class="coop-desc" data-i18n="coop3_desc">Coordinate labour and machinery across members to reduce waste.</div>
+      <a href="#" class="coop-link" data-i18n="coop3_link">Plan together →</a>
+    </div>
+    <!-- 4. market access -->
+    <div class="coop-card">
+      <div class="coop-icon">📦</div>
+      <div class="coop-title" data-i18n="coop4_title">Direct Buyers Network</div>
+      <div class="coop-desc" data-i18n="coop4_desc">Connect with wholesalers and processors looking for cooperative volumes.</div>
+      <a href="#" class="coop-link" data-i18n="coop4_link">Join network →</a>
+    </div>
+    <!-- 5. financial management -->
+    <div class="coop-card">
+      <div class="coop-icon">💰</div>
+      <div class="coop-title" data-i18n="coop5_title">Revenue Sharing & Loans</div>
+      <div class="coop-desc" data-i18n="coop5_desc">Track contributions, dividends, and apply for group-friendly credit.</div>
+      <a href="#" class="coop-link" data-i18n="coop5_link">Learn about financing →</a>
+    </div>
+    <!-- 6. well‑being for groups -->
+    <div class="coop-card">
+      <div class="coop-icon">🧑‍🤝‍🧑</div>
+      <div class="coop-title" data-i18n="coop6_title">Group Wellness Sessions</div>
+      <div class="coop-desc" data-i18n="coop6_desc">Guided meditations and stress‑relief exercises tailored for cooperative meetings.</div>
+      <a href="#" class="coop-link" data-i18n="coop6_link">Start a session →</a>
+    </div>
+  </div>
+
+  <!-- testimonial from a cooperative leader -->
+  <div class="testimonial-card">
+    <div class="testimonial-text" data-i18n="coop_testimonial">
+      Since we started using AGH for our cooperative, we've reduced input costs by 18% and improved communication among our 120 members. The group dashboard alone saved us hours of paperwork.
+    </div>
+    <div class="author-name">Elena Okonkwo</div>
+    <span class="author-location" data-i18n="coop_test_loc">President, Umuahia Farmers Coop</span>
+  </div>
+
+  <!-- CTA specific for cooperatives -->
+  <div class="cta-block">
+    <h3 data-i18n="coop_cta_title">Ready to grow together?</h3>
+    <div class="price-detail" data-i18n="coop_cta_text">Get a free consultation and tailored demo for your cooperative.</div>
+    <div class="terms-links" style="margin: 0.5rem 0;">
+      <a href="#" data-i18n="coop_cta_case">Read case studies</a> | <span data-i18n="coop_cta_guide">Download coop guide</span>
+    </div>
+    <button class="cta-button" data-i18n="coop_cta_button">Talk to our team</button>
+  </div>
+
+  <!-- footer (same as default) -->
+  <div class="footer-links">
+    <a href="about_us.html" data-i18n="company">About us</a>
+    <a href="Farm_resource.html" data-i18n="products">Farming resources</a>
+    <a href="cooperative.html" data-i18n="business">For cooperatives</a>
+    <a href="Help_&_Support.html" data-i18n="help">Help & support</a>
+    <a href="#" data-i18n="cookie_pref">Cookie preferences</a>
+  </div>
+  <div class="cookie-note" data-i18n="cookie_notice">
+    AGH and its partners use cookies to improve your experience. By using our site, you agree to our Privacy Policy.
+  </div>
+  <hr>
+  <div class="disclaimer" data-i18n="disclaimer">for cooperatives page · Acreage of Global Homestead</div>
+</div>
+
+<!-- translation engine (EN / ES) with cooperative-specific content -->
+<script>
+  (function() {
+    const translations = {
+      en: {
+        logo: "A G H",
+        translate_label: "🌾 Language",
+        coop_headline: "Empower your cooperative",
+        coop_subhead: "Shared tools, collective growth",
+        coop_tagline: "We help farming cooperatives manage resources, data, and well‑being together.",
+        // feature cards
+        coop1_title: "Group Dashboard",
+        coop1_desc: "Real‑time overview of all member farms: crop health, weather, and task status.",
+        coop1_link: "Explore demo →",
+        coop2_title: "Bulk Input Orders",
+        coop2_desc: "Aggregate seed, fertiliser, and equipment orders to negotiate better prices.",
+        coop2_link: "See how it works →",
+        coop3_title: "Cooperative Harvest Scheduler",
+        coop3_desc: "Coordinate labour and machinery across members to reduce waste.",
+        coop3_link: "Plan together →",
+        coop4_title: "Direct Buyers Network",
+        coop4_desc: "Connect with wholesalers and processors looking for cooperative volumes.",
+        coop4_link: "Join network →",
+        coop5_title: "Revenue Sharing & Loans",
+        coop5_desc: "Track contributions, dividends, and apply for group-friendly credit.",
+        coop5_link: "Learn about financing →",
+        coop6_title: "Group Wellness Sessions",
+        coop6_desc: "Guided meditations and stress‑relief exercises tailored for cooperative meetings.",
+        coop6_link: "Start a session →",
+        // testimonial
+        coop_testimonial: "Since we started using AGH for our cooperative, we've reduced input costs by 18% and improved communication among our 120 members. The group dashboard alone saved us hours of paperwork.",
+        coop_test_loc: "President, Umuahia Farmers Coop",
+        // CTA
+        coop_cta_title: "Ready to grow together?",
+        coop_cta_text: "Get a free consultation and tailored demo for your cooperative.",
+        coop_cta_case: "Read case studies",
+        coop_cta_guide: "Download coop guide",
+        coop_cta_button: "Talk to our team",
+        // footer
+        company: "About us",
+        products: "Farming resources",
+        business: "For cooperatives",
+        help: "Help & support",
+        cookie_pref: "Cookie preferences",
+        cookie_notice: "AGH and its partners use cookies to improve your experience. By using our site, you agree to our Privacy Policy.",
+        disclaimer: "for cooperatives page · Acreage of Global Homestead"
+      },
+      es: {
+        logo: "A G H",
+        translate_label: "🌾 Idioma",
+        coop_headline: "Potencia tu cooperativa",
+        coop_subhead: "Herramientas compartidas, crecimiento colectivo",
+        coop_tagline: "Ayudamos a las cooperativas agrícolas a gestionar recursos, datos y bienestar en conjunto.",
+        coop1_title: "Panel de grupo",
+        coop1_desc: "Vista general en tiempo real de todas las fincas asociadas: salud de cultivos, clima y tareas.",
+        coop1_link: "Explorar demo →",
+        coop2_title: "Pedidos al por mayor",
+        coop2_desc: "Agrupa pedidos de semillas, fertilizantes y equipos para negociar mejores precios.",
+        coop2_link: "Ver cómo funciona →",
+        coop3_title: "Planificador de cosecha cooperativa",
+        coop3_desc: "Coordina mano de obra y maquinaria entre miembros para reducir desperdicios.",
+        coop3_link: "Planifiquen juntos →",
+        coop4_title: "Red de compradores directos",
+        coop4_desc: "Conecta con mayoristas y procesadores que buscan volúmenes cooperativos.",
+        coop4_link: "Únete a la red →",
+        coop5_title: "Reparto de ingresos y préstamos",
+        coop5_desc: "Seguimiento de aportes, dividendos y solicitud de créditos favorables para grupos.",
+        coop5_link: "Información financiera →",
+        coop6_title: "Sesiones de bienestar grupal",
+        coop6_desc: "Meditaciones guiadas y ejercicios de relajación para reuniones cooperativas.",
+        coop6_link: "Iniciar sesión →",
+        coop_testimonial: "Desde que empezamos a usar AGH en nuestra cooperativa, redujimos costos de insumos en un 18% y mejoramos la comunicación entre nuestros 120 miembros. El panel grupal nos ahorró horas de papeleo.",
+        coop_test_loc: "Presidenta, Cooperativa Umuahia",
+        coop_cta_title: "¿Listos para crecer juntos?",
+        coop_cta_text: "Obtén una consultoría gratuita y una demo personalizada para tu cooperativa.",
+        coop_cta_case: "Leer casos de éxito",
+        coop_cta_guide: "Descargar guía",
+        coop_cta_button: "Hablar con nuestro equipo",
+        company: "Sobre nosotros",
+        products: "Recursos agrícolas",
+        business: "Para cooperativas",
+        help: "Ayuda y soporte",
+        cookie_pref: "Preferencias de cookies",
+        cookie_notice: "AGH y sus socios utilizan cookies para mejorar tu experiencia. Al usar nuestro sitio, aceptas nuestra Política de Privacidad.",
+        disclaimer: "página para cooperativas · Acreage of Global Homestead"
+      }
+    };
+
+    const langSelect = document.getElementById('lang-select');
+
+    function applyLanguage(lang) {
+      const elements = document.querySelectorAll('[data-i18n]');
+      elements.forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang] && translations[lang][key]) {
+          el.innerText = translations[lang][key];
+        }
+      });
+    }
+
+    langSelect.addEventListener('change', (e) => {
+      applyLanguage(e.target.value);
+    });
+
+    applyLanguage('en');
+  })();
+</script>
+</body>
+</html>

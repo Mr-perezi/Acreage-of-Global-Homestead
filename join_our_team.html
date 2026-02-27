@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Join Our Team · Acreage of Global Homestead</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #f0f2e9;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      color: #1d3a2b;
+      line-height: 1.5;
+      padding: 1.5rem 1rem;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      background-color: #ffffff;
+      border-radius: 2.5rem;
+      box-shadow: 0 25px 45px -20px #2f4b3c;
+      overflow: hidden;
+      padding: 2.5rem 2rem;
+    }
+
+    /* top bar */
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 1.8rem;
+      font-weight: 350;
+      font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
+      letter-spacing: -0.02em;
+      color: #2b6b4a;
+      border: 2px solid #c2d9c0;
+      border-radius: 60px;
+      padding: 0.2rem 1.5rem 0.2rem 1.2rem;
+      background: #fafff8;
+      box-shadow: 0 4px 8px rgba(0, 40, 20, 0.06);
+      transition: all 0.2s ease;
+      text-decoration: none;
+    }
+
+    .logo:hover {
+      border-color: #9bbf9a;
+      background: #b1eba9;
+      box-shadow: 0 6px 12px rgba(43, 107, 74, 0.1);
+    }
+
+    .logo::before {
+      content: "";
+      display: inline-block;
+      width: 1.6rem;
+      height: 1.6rem;
+      background: #0a0ae5;
+      mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black"><path d="M12,2C9,7,4,9,4,14c0,4,4,6,8,6s8-2,8-6C20,9,15,7,12,2z M12,18c-2.5,0-6-1-6-4c0-2.5,2-5,5-8c3,3,5,5.5,5,8 C16,17,14.5,18,12,18z"/></svg>') no-repeat center;
+      mask-size: contain;
+      -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black"><path d="M12,2C9,7,4,9,4,14c0,4,4,6,8,6s8-2,8-6C20,9,15,7,12,2z M12,18c-2.5,0-6-1-6-4c0-2.5,2-5,5-8c3,3,5,5.5,5,8 C16,17,14.5,18,12,18z"/></svg>') no-repeat center;
+      -webkit-mask-size: contain;
+      background-color: #c6f539;
+    }
+
+    .translator-control {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: #e6f0e5;
+      padding: 0.4rem 1rem 0.4rem 1.5rem;
+      border-radius: 60px;
+      border: 1px solid #bcd5b6;
+    }
+
+    .translator-control label {
+      font-size: 0.9rem;
+      font-weight: 450;
+      color: #2a6e4d;
+    }
+
+    #lang-select {
+      background: white;
+      border: 1px solid #aacfaf;
+      border-radius: 30px;
+      padding: 0.4rem 1.2rem;
+      font-size: 1rem;
+      color: #1f6242;
+      font-weight: 450;
+      cursor: pointer;
+      outline: none;
+    }
+
+    /* hero */
+    .hero {
+      text-align: center;
+      max-width: 800px;
+      margin: 1rem auto 2rem;
+    }
+
+    .hero h1 {
+      font-size: 3.2rem;
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      color: #1d5235;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero .subhead {
+      font-size: 1.8rem;
+      font-weight: 320;
+      color: #3b7556;
+      margin-bottom: 1rem;
+    }
+
+    .hero .tagline {
+      font-size: 1.3rem;
+      font-weight: 290;
+      color: #528b6b;
+      padding-bottom: 1.2rem;
+    }
+
+    /* intro paragraph */
+    .intro-text {
+      background: #f0f7f2;
+      border-radius: 2rem;
+      padding: 2rem;
+      margin: 2rem 0;
+      text-align: center;
+      font-size: 1.2rem;
+      color: #2d6b48;
+      border: 1px solid #cde0d2;
+    }
+
+    /* jobs grid – reuse team‑card style with extra button */
+    .jobs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 2rem 1.5rem;
+      margin: 2.5rem 0;
+    }
+
+    .job-card {
+      background: #f9fcf7;
+      border-radius: 1.8rem;
+      padding: 1.8rem 1.5rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+      border: 1px solid #ddebd9;
+      transition: all 0.15s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .job-card:hover {
+      box-shadow: 0 18px 28px -16px #417a5b;
+      border-color: #b6d7b6;
+    }
+
+    .job-title {
+      font-weight: 620;
+      color: #1f6642;
+      font-size: 1.5rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .job-meta {
+      font-size: 0.95rem;
+      color: #528b6b;
+      margin: 0.3rem 0 0.8rem;
+      font-weight: 420;
+    }
+
+    .job-description {
+      font-size: 0.98rem;
+      color: #2d6446;
+      margin: 0.8rem 0 1.2rem;
+      flex: 1;
+    }
+
+    .apply-btn {
+      background: #2a7853;
+      border: none;
+      color: white;
+      font-size: 1.1rem;
+      font-weight: 450;
+      padding: 0.6rem 1.2rem;
+      border-radius: 40px;
+      cursor: pointer;
+      transition: background 0.2s;
+      border: 1px solid #288f51;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      align-self: flex-start;
+      margin-top: 0.5rem;
+    }
+
+    .apply-btn:hover {
+      background: #1e6040;
+    }
+
+    /* benefits section – reuse mission‑grid style */
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+
+    .benefit-card {
+      background: #f9fcf7;
+      border-radius: 1.8rem;
+      padding: 2rem 1.5rem;
+      border: 1px solid #ddebd9;
+      text-align: center;
+    }
+
+    .benefit-icon {
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .benefit-card h4 {
+      font-size: 1.5rem;
+      font-weight: 380;
+      color: #1c5f3c;
+      margin-bottom: 0.5rem;
+    }
+
+    .benefit-card p {
+      color: #2a5c40;
+    }
+
+    /* callout box for speculative applications */
+    .callout {
+      background: #deecdd;
+      border-radius: 2.5rem;
+      padding: 2.5rem 2rem;
+      text-align: center;
+      margin: 2.5rem 0 1.5rem;
+    }
+
+    .callout h3 {
+      font-size: 2rem;
+      font-weight: 380;
+      color: #1c5f3c;
+      margin-bottom: 0.8rem;
+    }
+
+    .callout p {
+      font-size: 1.2rem;
+      color: #2d6b48;
+      margin-bottom: 1.5rem;
+    }
+
+    .callout a {
+      background: white;
+      color: #2a7853;
+      text-decoration: none;
+      font-size: 1.3rem;
+      font-weight: 500;
+      padding: 0.7rem 2.5rem;
+      border-radius: 60px;
+      border: 1px solid #288f51;
+      transition: 0.15s;
+    }
+
+    .callout a:hover {
+      background: #e6f3e6;
+    }
+
+    /* footer */
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2.2rem;
+      margin-top: 3rem;
+      padding: 2rem 0 1rem;
+      border-top: 1px solid #d1dfcd;
+      font-size: 1rem;
+    }
+
+    .footer-links a {
+      text-decoration: none;
+      color: #2d7553;
+      font-weight: 460;
+    }
+
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
+
+    .cookie-note {
+      margin: 1.8rem auto 0.5rem;
+      font-size: 0.82rem;
+      color: #5f9178;
+      text-align: center;
+      max-width: 700px;
+      background: #f1f9ef;
+      padding: 0.8rem 1.8rem;
+      border-radius: 60px;
+    }
+
+    .cookie-note a {
+      color: #1f7a4b;
+    }
+
+    hr {
+      border: none;
+      border-top: 2px solid #dae5d3;
+      margin: 1rem 0;
+    }
+
+    .disclaimer {
+      text-align: center;
+      font-size: 0.75rem;
+      color: #86af93;
+      margin-top: 0.5rem;
+    }
+
+    @media (max-width: 600px) {
+      .container { padding: 1.8rem 1rem; }
+      .hero h1 { font-size: 2.5rem; }
+      .hero .subhead { font-size: 1.5rem; }
+      .top-bar { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <!-- top bar with logo and translator -->
+  <div class="top-bar">
+    <div class="logo" data-i18n="logo">A G H</div>
+    <div class="translator-control">
+      <label for="lang-select" data-i18n="translate_label">🌾 Language</label>
+      <select id="lang-select">
+        <option value="en" selected>English</option>
+        <option value="es">Español</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- hero -->
+  <div class="hero">
+    <h1 data-i18n="join_headline">Grow with us.</h1>
+    <div class="subhead" data-i18n="join_subhead">Join the Acreage of Global Homestead team</div>
+    <div class="tagline" data-i18n="join_tagline">Help us empower farmers worldwide through technology and compassion.</div>
+  </div>
+
+  <!-- intro / culture -->
+  <div class="intro-text" data-i18n="join_intro">
+    We’re a diverse group of agronomists, engineers, and community builders. If you’re passionate about sustainable agriculture and mental well‑being, you’ll feel right at home.
+  </div>
+
+  <!-- open positions heading -->
+  <h2 style="font-size: 2rem; font-weight: 360; color: #1c5537; text-align: center; margin: 2rem 0 1rem;" data-i18n="open_positions">Open positions</h2>
+
+  <!-- jobs grid (example listings) -->
+  <div class="jobs-grid">
+    <div class="job-card">
+      <div class="job-title" data-i18n="job1_title">Field Agronomist</div>
+      <div class="job-meta" data-i18n="job1_meta">📍 Delta region · Full‑time</div>
+      <div class="job-description" data-i18n="job1_desc">Support smallholder farmers with on‑ground training and soil sampling.</div>
+      <a href="#" class="apply-btn" data-i18n="apply_btn">Apply</a>
+    </div>
+    <div class="job-card">
+      <div class="job-title" data-i18n="job2_title">IoT Field Technician</div>
+      <div class="job-meta" data-i18n="job2_meta">📍 Remote / Nigeria · Full‑time</div>
+      <div class="job-description" data-i18n="job2_desc">Install and maintain low‑cost sensors, train local champions.</div>
+      <a href="#" class="apply-btn" data-i18n="apply_btn">Apply</a>
+    </div>
+    <div class="job-card">
+      <div class="job-title" data-i18n="job3_title">Partnerships Manager</div>
+      <div class="job-meta" data-i18n="job3_meta">📍 West Africa · Full‑time</div>
+      <div class="job-description" data-i18n="job3_desc">Build relationships with cooperatives and government agencies.</div>
+      <a href="#" class="apply-btn" data-i18n="apply_btn">Apply</a>
+    </div>
+    <div class="job-card">
+      <div class="job-title" data-i18n="job4_title">Well‑being Content Creator</div>
+      <div class="job-meta" data-i18n="job4_meta">📍 Remote · Part‑time</div>
+      <div class="job-description" data-i18n="job4_desc">Develop meditation and stress‑management resources for farmers.</div>
+      <a href="#" class="apply-btn" data-i18n="apply_btn">Apply</a>
+    </div>
+  </div>
+
+  <!-- benefits & culture -->
+  <h2 style="font-size: 2rem; font-weight: 360; color: #1c5537; text-align: center; margin: 2rem 0 1rem;" data-i18n="benefits_title">Why work with us</h2>
+  <div class="benefits-grid">
+    <div class="benefit-card">
+      <div class="benefit-icon">🌱</div>
+      <h4 data-i18n="benefit1_title">Purpose‑driven</h4>
+      <p data-i18n="benefit1_text">Every role directly improves farmers’ lives.</p>
+    </div>
+    <div class="benefit-card">
+      <div class="benefit-icon">🏡</div>
+      <h4 data-i18n="benefit2_title">Flexible work</h4>
+      <p data-i18n="benefit2_text">Remote options and field‑friendly schedules.</p>
+    </div>
+    <div class="benefit-card">
+      <div class="benefit-icon">📚</div>
+      <h4 data-i18n="benefit3_title">Continuous learning</h4>
+      <p data-i18n="benefit3_text">Agronomy courses, conferences, and workshops.</p>
+    </div>
+    <div class="benefit-card">
+      <div class="benefit-icon">❤️</div>
+      <h4 data-i18n="benefit4_title">Well‑being focus</h4>
+      <p data-i18n="benefit4_text">Mental health support and meditation days.</p>
+    </div>
+  </div>
+
+  <!-- call to action for speculative applications -->
+  <div class="callout">
+    <h3 data-i18n="speculative_title">Don’t see the perfect role?</h3>
+    <p data-i18n="speculative_text">Send us your resume and tell us how you’d like to contribute.</p>
+    <a href="mailto:careers@acreage.global" data-i18n="speculative_btn">careers@acreage.global</a>
+  </div>
+
+  <!-- footer -->
+  <div class="footer-links">
+    <a href="about_us.html" data-i18n="company">About us</a>
+    <a href="Farm_resource.html" data-i18n="products">Farming resources</a>
+    <a href="cooperative.html" data-i18n="business">For cooperatives</a>
+    <a href="Help_&_Support.html" data-i18n="help">Help & support</a>
+    <a href="#" data-i18n="cookie_pref">Cookie preferences</a>
+  </div>
+  <div class="cookie-note" data-i18n="cookie_notice">
+    AGH and its partners use cookies to improve your experience. By using our site, you agree to our Privacy Policy.
+  </div>
+  <hr>
+  <div class="disclaimer" data-i18n="disclaimer">join our team · Acreage of Global Homestead</div>
+</div>
+
+<!-- translation engine (EN / ES) with join‑specific keys -->
+<script>
+  (function() {
+    const translations = {
+      en: {
+        logo: "A G H",
+        translate_label: "🌾 Language",
+        join_headline: "Grow with us.",
+        join_subhead: "Join the Acreage of Global Homestead team",
+        join_tagline: "Help us empower farmers worldwide through technology and compassion.",
+        join_intro: "We’re a diverse group of agronomists, engineers, and community builders. If you’re passionate about sustainable agriculture and mental well‑being, you’ll feel right at home.",
+        open_positions: "Open positions",
+        job1_title: "Field Agronomist",
+        job1_meta: "📍 Delta region · Full‑time",
+        job1_desc: "Support smallholder farmers with on‑ground training and soil sampling.",
+        job2_title: "IoT Field Technician",
+        job2_meta: "📍 Remote / Nigeria · Full‑time",
+        job2_desc: "Install and maintain low‑cost sensors, train local champions.",
+        job3_title: "Partnerships Manager",
+        job3_meta: "📍 West Africa · Full‑time",
+        job3_desc: "Build relationships with cooperatives and government agencies.",
+        job4_title: "Well‑being Content Creator",
+        job4_meta: "📍 Remote · Part‑time",
+        job4_desc: "Develop meditation and stress‑management resources for farmers.",
+        apply_btn: "Apply",
+        benefits_title: "Why work with us",
+        benefit1_title: "Purpose‑driven",
+        benefit1_text: "Every role directly improves farmers’ lives.",
+        benefit2_title: "Flexible work",
+        benefit2_text: "Remote options and field‑friendly schedules.",
+        benefit3_title: "Continuous learning",
+        benefit3_text: "Agronomy courses, conferences, and workshops.",
+        benefit4_title: "Well‑being focus",
+        benefit4_text: "Mental health support and meditation days.",
+        speculative_title: "Don’t see the perfect role?",
+        speculative_text: "Send us your resume and tell us how you’d like to contribute.",
+        speculative_btn: "careers@acreage.global",
+        company: "About us",
+        products: "Farming resources",
+        business: "For cooperatives",
+        help: "Help & support",
+        cookie_pref: "Cookie preferences",
+        cookie_notice: "AGH and its partners use cookies to improve your experience. By using our site, you agree to our Privacy Policy.",
+        disclaimer: "join our team · Acreage of Global Homestead"
+      },
+      es: {
+        logo: "A G H",
+        translate_label: "🌾 Idioma",
+        join_headline: "Crece con nosotros.",
+        join_subhead: "Únete al equipo de Acreage of Global Homestead",
+        join_tagline: "Ayúdanos a empoderar a agricultores de todo el mundo con tecnología y compasión.",
+        join_intro: "Somos un grupo diverso de agrónomos, ingenieros y constructores de comunidad. Si te apasiona la agricultura sostenible y el bienestar mental, estarás en casa.",
+        open_positions: "Vacantes abiertas",
+        job1_title: "Agrónomo de campo",
+        job1_meta: "📍 Región del Delta · Tiempo completo",
+        job1_desc: "Apoyar a pequeños agricultores con formación práctica y muestreo de suelos.",
+        job2_title: "Técnico de campo IoT",
+        job2_meta: "📍 Remoto / Nigeria · Tiempo completo",
+        job2_desc: "Instalar y mantener sensores de bajo costo, capacitar a líderes locales.",
+        job3_title: "Gerente de alianzas",
+        job3_meta: "📍 África Occidental · Tiempo completo",
+        job3_desc: "Construir relaciones con cooperativas y agencias gubernamentales.",
+        job4_title: "Creador de contenido de bienestar",
+        job4_meta: "📍 Remoto · Medio tiempo",
+        job4_desc: "Desarrollar recursos de meditación y manejo del estrés para agricultores.",
+        apply_btn: "Aplicar",
+        benefits_title: "Por qué trabajar con nosotros",
+        benefit1_title: "Con propósito",
+        benefit1_text: "Cada rol mejora directamente la vida de los agricultores.",
+        benefit2_title: "Trabajo flexible",
+        benefit2_text: "Opciones remotas y horarios adaptados al campo.",
+        benefit3_title: "Aprendizaje continuo",
+        benefit3_text: "Cursos de agronomía, conferencias y talleres.",
+        benefit4_title: "Enfoque en bienestar",
+        benefit4_text: "Apoyo de salud mental y días de meditación.",
+        speculative_title: "¿No encuentras el rol perfecto?",
+        speculative_text: "Envíanos tu currículum y cuéntanos cómo te gustaría contribuir.",
+        speculative_btn: "careers@acreage.global",
+        company: "Sobre nosotros",
+        products: "Recursos agrícolas",
+        business: "Para cooperativas",
+        help: "Ayuda y soporte",
+        cookie_pref: "Preferencias de cookies",
+        cookie_notice: "AGH y sus socios utilizan cookies para mejorar tu experiencia. Al usar nuestro sitio, aceptas nuestra Política de Privacidad.",
+        disclaimer: "únete al equipo · Acreage of Global Homestead"
+      }
+    };
+
+    const langSelect = document.getElementById('lang-select');
+
+    function applyLanguage(lang) {
+      const elements = document.querySelectorAll('[data-i18n]');
+      elements.forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang] && translations[lang][key]) {
+          el.innerHTML = translations[lang][key];
+        }
+      });
+    }
+
+    langSelect.addEventListener('change', (e) => {
+      applyLanguage(e.target.value);
+    });
+
+    applyLanguage('en');
+  })();
+</script>
+</body>
+</html>
